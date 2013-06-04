@@ -14,6 +14,8 @@ public:
 	Fir1(float *coefficients, unsigned taps);
 
 	// coefficients as a text file (for example from MATLAB)
+	// The number of taps is automatically detected
+	// when the taps are kept zero
 	Fir1(const char* coeffFile, unsigned filtertaps = 0);
 
 	// destructor
@@ -24,12 +26,15 @@ public:
 
 	// reset the buffer
 	void reset();
+
+	// returns the number of taps
+	unsigned getTaps() {return taps;};
 	
 private:
 	float        *coefficients;
 	float        *buffer;
 	unsigned      taps, offset;
-	
+
 };
 
 #endif
