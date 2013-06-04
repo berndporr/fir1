@@ -4,7 +4,7 @@
 //
 
 // This is the only include you need
-#include "../Fir1.h"
+#include "Fir1.h"
 
 #include <sstream>
 #include <iostream>
@@ -15,7 +15,7 @@ int main (int,char**)
 {
 	const int taps = 1000;
 
-	Fir1 f("coefficients.dat",taps);
+	Fir1 f("coefficients.dat");
 
 	f.reset ();
 

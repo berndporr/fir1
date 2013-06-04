@@ -15,19 +15,36 @@ Fir1::Fir1(float *coefficients, unsigned taps) :
 {}
 
 // one coefficient per line
-Fir1::Fir1(const char* coeffFile, unsigned taps) :
-    buffer(new float[taps]()),  
-    taps(taps),
-    coefficients(new float[taps]),
+Fir1::Fir1(const char* coeffFile, unsigned filtertaps) :
     offset(0)
 {
 	FILE* f=fopen(coeffFile,"rt");
 	if (!f)
 	{
 		fprintf(stderr,"Could not open file with coefficients.\n");
-		exit(1);
+		return;
+	}
+
+	taps = filtertaps;
+
+	if (taps == 0)
+	{
+		taps = 0;
+		float a;
+		while (fscanf(f,"%f\n",&a)>0) taps++;
+		rewind(f);
+	}
+
+	if (taps == 0)
+	{
+		buffer = NULL;
+		coefficients = NULL;
+		return;
 	}
 	
+	buffer = new float[taps];
+	coefficients = new float[taps];
+
 	for(int i=0;i<taps;i++)
 	{
 		if (fscanf(f,"%f\n",coefficients+i)<1)
@@ -35,7 +52,6 @@ Fir1::Fir1(const char* coeffFile, unsigned taps) :
 			fprintf(stderr,"Could not read coefficients.\n");
 			exit(1);
 		}
-		fprintf(stderr,"%f\n",coefficients[i]);
 	}
 	fclose(f);
 }

@@ -1,5 +1,8 @@
 This is a library which implements an efficient FIR filter.
 
+You can set the coefficients either with a floating point
+array or with a text file containing the coefficients.
+
 Installation is done with the standard sequence:
 CXXFLAGS="-O3 -march=native" ./configure
 make
@@ -8,7 +11,8 @@ sudo ldconfig
 
 A demo program is in the "demo" directory which demonstrates
 an impulse response. A delta pulse is sent into the filter
-and saved as a gnuplot/octave file.
+and saved as a gnuplot/octave file. This should look identical
+to the coefficients.
 
 This library has been adapted form Graeme Hattan's original code.
 
