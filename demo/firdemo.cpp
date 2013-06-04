@@ -13,9 +13,9 @@
 
 int main (int,char**)
 {
-	const int taps = 2800;
+	const int taps = 1000;
 
-	Fir1 f("tibrl20coef.dat",taps);
+	Fir1 f("coefficients.dat",taps);
 
 	f.reset ();
 
