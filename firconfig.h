@@ -1,1 +1,0 @@
-/* firconfig.h.  Generated from firconfig.h.in by configure.  */
