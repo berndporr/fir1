@@ -1,4 +1,4 @@
 fir1
 ====
 
-FIR filter implementation
+FIR realtime filter library

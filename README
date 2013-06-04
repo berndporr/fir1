@@ -1,0 +1,17 @@
+This is a library which implements an efficient FIR filter.
+
+Installation is done with the standard sequence:
+CXXFLAGS="-O3 -march=native" ./configure
+make
+sudo make install
+sudo ldconfig
+
+A demo program is in the "demo" directory which demonstrates
+an impulse response. A delta pulse is sent into the filter
+and saved as a gnuplot/octave file.
+
+This library has been adapted form Graeme Hattan's original code.
+
+Enjoy!
+
+Bernd Porr & Graeme Hattan
