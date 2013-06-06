@@ -22,6 +22,8 @@ int main (int,char**)
 	// gets the number of taps
 	int taps = fir.getTaps();
 
+	printf("taps = %d\n",taps);
+
 	FILE *fimpulse = fopen("impulse.dat","wt");
 	for(int i=0;i<taps*2;i++) 
 	{

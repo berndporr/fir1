@@ -1,3 +1,27 @@
+/*
+License: MIT License (http://www.opensource.org/licenses/mit-license.php)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
+
+/* (C) 2013 Graeme Hattan & Bernd Porr */
+
 #ifndef FIR1_H
 #define FIR1_H
 
@@ -11,18 +35,18 @@ public:
 	// coefficients as floating point
 	// if the taps are left zero the program counts
 	// the number of coefficients by itself.
-	Fir1(float *coefficients, unsigned taps);
+	Fir1(double *coefficients, unsigned number_of_taps);
 
 	// coefficients as a text file (for example from MATLAB)
 	// The number of taps is automatically detected
 	// when the taps are kept zero
-	Fir1(const char* coeffFile, unsigned filtertaps = 0);
+	Fir1(const char* coeffFile, unsigned number_of_taps = 0);
 
 	// destructor
 	~Fir1();
 
 	// the actual filter function
-	float filter(float input);
+	double filter(double input);
 
 	// reset the buffer
 	void reset();
@@ -31,8 +55,8 @@ public:
 	unsigned getTaps() {return taps;};
 	
 private:
-	float        *coefficients;
-	float        *buffer;
+	double        *coefficients;
+	double        *buffer;
 	unsigned      taps, offset;
 
 };
