@@ -1,4 +1,4 @@
-AC_INIT([LibFIR], [1.0], [mail@berndporr.me.uk], [fir],
+AC_INIT([LibFIR], [1.1], [mail@berndporr.me.uk], [fir],
         [http://www.berndporr.me.uk])
 AC_PREREQ([2.59])
 AM_INIT_AUTOMAKE([1.10 -Wall no-define])
