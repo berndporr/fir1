@@ -21,7 +21,7 @@
 int main (int,char**)
 {
 	// inits the filter
-	Fir1fixed fir("coeff12bit.dat",8);
+	Fir1fixed fir("coeff12bit.dat",12);
 
 	// resets the delay line to zero
 	fir.reset ();
