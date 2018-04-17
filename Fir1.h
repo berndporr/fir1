@@ -56,7 +56,11 @@ public:
 	// Adaptive filter weight update
 	// Every filter coefficient is updates with:
 	// w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
-	void adaptive_update(double error);
+	void lms_update(double error);
+
+	// setting the learning rate for the LMS algorithm
+	void setLearningRate(double _mu) {mu = _mu;};
+	double getLearningRate() {return mu;};
 
 	// reset the buffer
 	void reset();
@@ -64,9 +68,6 @@ public:
 	// returns the number of taps
 	unsigned getTaps() {return taps;};
 
-	void setLearningRate(double _mu) {mu = _mu;};
-	double getLearningRate() {return mu;};
-	
 private:
 	double        *coefficients = NULL;
 	double        *buffer = NULL;

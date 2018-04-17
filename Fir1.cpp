@@ -96,7 +96,7 @@ Fir1::~Fir1()
 }
 
 
-void Fir1::adaptive_update(double error)
+void Fir1::lms_update(double error)
 {
 	double *coeff_p = coefficients;
 	double *buff_p = buffer;
