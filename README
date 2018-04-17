@@ -49,15 +49,18 @@ Installation
 ------------
 Linux / Unix:
 This is done with the standard sequence:
-sh autogen.sh
-CXXFLAGS="-O3 -march=native" ./configure
+cmake .
 make
 sudo make install
 sudo ldconfig
 
-Windows:
-Just open the solution file in VC++ 2017 and build it. You'll get
-a static library file called libfir1.lib.
+Installation under Windows:
+Under windows only the static library is generated which
+should be used for your code development.
+```
+cmake -G "Visual Studio 15 2017 Win64" .
+```
+and then start Visual C++ and compile it.
 
 Demo programs are in the "demo" directory which show how to use the
 filters for both floating point and fixed point.

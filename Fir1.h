@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2018 Graeme Hattan & Bernd Porr */
 
 #ifndef FIR1_H
 #define FIR1_H
