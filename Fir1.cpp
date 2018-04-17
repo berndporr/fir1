@@ -28,10 +28,19 @@ THE SOFTWARE.
 #include <stdlib.h>
 #include <assert.h>
 
+// give the filter an array of doubles for the coefficients
 Fir1::Fir1(double *coefficients, unsigned number_of_taps) :
 	coefficients(coefficients),
 	// addition of brackets should mean the array is 
 	// value-initialised to be all zeros
+	buffer(new double[number_of_taps]()),  
+	taps(number_of_taps),
+	offset(0)
+{}
+
+// init all coefficients and the buffer to zero
+Fir1::Fir1(unsigned number_of_taps) :
+	coefficients(new double[number_of_taps]()),
 	buffer(new double[number_of_taps]()),  
 	taps(number_of_taps),
 	offset(0)
@@ -85,6 +94,18 @@ Fir1::~Fir1()
   delete[] buffer;
   delete[] coefficients;
 }
+
+
+void Fir1::adaptive_update(double error)
+{
+	double *coeff_p = coefficients;
+	double *buff_p = buffer;
+
+	for(int i = 0; i < taps; i++) {
+		*coeff_p = (*coeff_p) + mu * error * (*buff_p);
+	}
+}
+
 
 double Fir1::filter(double input)
 {

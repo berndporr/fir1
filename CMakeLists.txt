@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
+set (CMAKE_CXX_STANDARD 11)
+include(GNUInstallDirs)
 
 project(fir VERSION 1.1.0 LANGUAGES CXX)
-include(GNUInstallDirs)
 add_subdirectory(demo)
 
 set(LIBSRC

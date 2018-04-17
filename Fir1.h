@@ -42,23 +42,36 @@ public:
 	// when the taps are kept zero
 	Fir1(const char* coeffFile, unsigned number_of_taps = 0);
 
+	// init all coefficients and the buffer to zero
+	// This is useful for adaptive filters where we start with
+	// zero coefficients
+	Fir1(unsigned number_of_taps);
+
 	// destructor
 	~Fir1();
 
 	// the actual filter function
 	double filter(double input);
 
+	// Adaptive filter weight update
+	// Every filter coefficient is updates with:
+	// w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
+	void adaptive_update(double error);
+
 	// reset the buffer
 	void reset();
 
 	// returns the number of taps
 	unsigned getTaps() {return taps;};
+
+	void setLearningRate(double _mu) {mu = _mu;};
+	double getLearningRate() {return mu;};
 	
 private:
-	double        *coefficients;
-	double        *buffer;
-	unsigned      taps, offset;
-
+	double        *coefficients = NULL;
+	double        *buffer = NULL;
+	unsigned      taps = 0, offset = 0;
+	double        mu = 0;
 };
 
 #endif
