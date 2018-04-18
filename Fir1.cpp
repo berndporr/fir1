@@ -102,7 +102,8 @@ void Fir1::lms_update(double error)
 	double *buff_p = buffer;
 
 	for(int i = 0; i < taps; i++) {
-		*coeff_p = (*coeff_p) + mu * error * (*buff_p);
+		*coeff_p = *coeff_p + mu * error * *buff_p++;
+		coeff_p++;
 	}
 }
 
