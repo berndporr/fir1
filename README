@@ -1,6 +1,31 @@
 This is a library which implements an efficient FIR filter
 in both floating point arithmetic and integer arithmetic.
 
+The floating point class also has an adaptive filter
+method for the LMS algorithm with the standard
+parameters: learning rate and the error which adjusts
+the weights.
+
+
+Installation
+------------
+Linux / Unix:
+This is done with the standard sequence:
+cmake .
+make
+sudo make install
+sudo ldconfig
+
+Installation under Windows:
+Under windows only the static library is generated which
+should be used for your code development.
+```
+cmake -G "Visual Studio 15 2017 Win64" .
+```
+and then start Visual C++ and compile it.
+
+
+
 How to use it
 -------------
 
@@ -44,23 +69,6 @@ and then you can filter your realtime data with:
 
 1) float b = fir.filter(a);
 2) int b = fir.filter(a);
-
-Installation
-------------
-Linux / Unix:
-This is done with the standard sequence:
-cmake .
-make
-sudo make install
-sudo ldconfig
-
-Installation under Windows:
-Under windows only the static library is generated which
-should be used for your code development.
-```
-cmake -G "Visual Studio 15 2017 Win64" .
-```
-and then start Visual C++ and compile it.
 
 Demo programs are in the "demo" directory which show how to use the
 filters for both floating point and fixed point.
