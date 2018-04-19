@@ -98,14 +98,24 @@ Fir1::~Fir1()
 
 void Fir1::lms_update(double error)
 {
-	double *coeff_p = coefficients;
-	double *buff_p = buffer;
+	double *coeff     = coefficients;
+	double *coeff_end = coefficients + taps;
 
-	for(int i = 0; i < taps; i++) {
-		*coeff_p = *coeff_p + mu * error * *buff_p++;
-		coeff_p++;
+	double *buf_val = buffer + offset;
+
+	while(buf_val >= buffer) {
+		*coeff += *buf_val-- * error * mu;
+		coeff++;
+	}
+	
+	buf_val = buffer + taps-1;
+	
+	while(coeff < coeff_end) {
+		*coeff += *buf_val-- * error * mu;
+		coeff++;
 	}
 }
+
 
 
 double Fir1::filter(double input)
