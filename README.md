@@ -3,15 +3,15 @@
 This is a library which implements an efficient FIR filter
 in both floating point arithmetic and integer arithmetic.
 
-The floating point class also has an adaptive filter
+The floating point class has also an adaptive filter
 method for the LMS algorithm with the standard
-parameters: learning rate and the error which adjusts
+parameters: `learning rate` and the `error` which adjusts
 the weights.
 
 
 ## Installation
 
-### Linux / Unix
+### Linux / Unix / MACOSX
 
 This is done with the standard sequence:
 ```
@@ -35,7 +35,7 @@ and then start Visual C++ and compile it.
 
 ## How to use it
 
-### Generating the FIR filter coefficiennts
+### Generating the FIR filter coefficients
 
 You can set the coefficients either with a C floating point array or
 with a text file containing the coefficients. The text file with the
@@ -83,7 +83,7 @@ and then you can filter your realtime data with:
 
 1.
 ```
-float b = fir.filter(a);
+double b = fir.filter(a);
 ```
 2.
 ```
@@ -109,7 +109,7 @@ w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
 with the function `lms_update(error)`. Set the learning_rate
 with `setLearningRate(learning_rate)`.
 
-This error signal is usally calcuated by subtracting the output
+This error signal is usually calculated by subtracting the output
 of the filter from an input or desired signal, for example
 for artefact removal or system identification.
 
