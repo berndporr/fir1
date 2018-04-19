@@ -78,6 +78,20 @@ response at its output.
 are 12 bit and you can generate them either with OCTAVE/MATLAB or Python.
 The scripts are also provided.
 
+
+LMS algorithm:
+You can adjust the FIR coefficients with the help of an error
+signal:
+
+w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
+
+with the function lms_update(error). Set the learning_rate
+with setLearningRate(learning_rate).
+This error signal is usally calcuated by subtracting the output
+of the filter from an input or desired signal, for example
+for artefact removal or system identification.
+
+
 This library has been adapted form Graeme Hattan's original C code.
 
 Enjoy!

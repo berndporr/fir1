@@ -56,6 +56,8 @@ public:
 	// Adaptive filter weight update
 	// Every filter coefficient is updates with:
 	// w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
+	// the error is calculated differently for different
+	// applications such as artefact removal or system identification.
 	void lms_update(double error);
 
 	// setting the learning rate for the LMS algorithm
