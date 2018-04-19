@@ -53,7 +53,7 @@ b = signal.firwin(999,[f1/fs*2,f2/fs*2])
 np.savetxt("h.dat",b)
 ```
 this text file can then be imported into the filter at
-runtim or you convert it to a C floating point array and
+runtime or you turn the textfile into a C++ floating point array and
 point the filter to it.
 
 For fixed point you need to scale up the coefficients,
@@ -87,7 +87,7 @@ where the coefficients have been scaled up by 2^12 and the
 filter will scale them down by this amount (with the help of
 a bitshift operation).
 
-and then you can filter your realtime data with:
+and then you filter your realtime data with:
 
 1. for double
 ```
@@ -100,17 +100,26 @@ int b = fir.filter(a);
 
 ## LMS algorithm
 
-You can adjust the FIR coefficients with the help of an error
-signal:
+The least mean square algorithm adjusts the FIR coefficients
+with the help of an error signal
 ```
 w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
 ```
-with the function `lms_update(error)`. Set the learning_rate
-with `setLearningRate(learning_rate)`.
+using the function `lms_update(error)` while performing
+the filtering with filter().
 
-This error signal is usually calculated by subtracting the output
-of the filter from an input or desired signal, for example
-for artefact removal or system identification.
+Set the learning_rate with the method `setLearningRate(learning_rate)`
+before starting the filtering. The initial coefficients are usually
+zero.
+
+The input of the filter is an additional signal which provides
+information which can be used by the filter to minimise the error.
+
+This error signal is calculated by subtracting the output of the
+filter from a desired signal which is then fed back into
+the filter with the function lms_update(error).
+
+See the demo below which removes 50Hz from an ECG.
 
 
 ## Demos
