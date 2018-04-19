@@ -15,12 +15,12 @@
 int main (int,char**)
 {
 	// inits the filter
-	Fir1 fir(100);
+	Fir1 fir(NTAPS);
 	fir.setLearningRate(LEARNING_RATE);
 
 	FILE *finput = fopen("ecg50hz.dat","rt");
 	FILE *foutput = fopen("ecg_filtered.dat","wt");
-	for(int i=0;i<10000;i++) 
+	for(int i=0;;i++) 
 	{
 		double input_signal;		
 		if (fscanf(finput,"%lf\n",&input_signal)<1) break;
