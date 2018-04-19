@@ -1,2 +1,3 @@
 firdemo: sends an impulse response through the filter (floating point)
 fixeddemo: sends an ECG with 50Hz noise through the fixed point filter
+lmsdemo: removes 50Hz with the help of adaptive filter using LMS
