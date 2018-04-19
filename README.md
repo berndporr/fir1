@@ -100,24 +100,20 @@ int b = fir.filter(a);
 
 ## LMS algorithm
 
-The least mean square algorithm adjusts the FIR coefficients
+The least mean square algorithm adjusts the FIR coefficients w_k
 with the help of an error signal
 ```
 w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
 ```
 using the function `lms_update(error)` while performing
-the filtering with filter().
+the filtering with `filter()`.
 
-Set the learning_rate with the method `setLearningRate(learning_rate)`
-before starting the filtering. The initial coefficients are usually
-zero.
+Here is a brief description how to use the filter:
 
-The input of the filter is an additional signal which provides
-information which can be used by the filter to minimise the error.
-
-This error signal is calculated by subtracting the output of the
-filter from a desired signal which is then fed back into
-the filter with the function lms_update(error).
+- Set all coefficients to zero.
+- Set the learning_rate with the method `setLearningRate(learning_rate)`.
+- The input of the filter is an additional signal which provides information which can be used by the filter to minimise the error.
+- The error signal is calculated by subtracting the output of the filter from a desired signal which is then fed back into the filter with the function lms_update(error).
 
 See the demo below which removes 50Hz from an ECG.
 
