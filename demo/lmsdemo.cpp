@@ -9,7 +9,9 @@
 // This is the only include you need
 #include "Fir1.h"
 
+#define _USE_MATH_DEFINES
 #include <stdio.h>
+#include <math.h>
 
 #define NTAPS 100
 #define LEARNING_RATE 0.0005
