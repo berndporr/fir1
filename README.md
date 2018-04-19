@@ -4,16 +4,15 @@ This is a library which implements an efficient FIR filter
 in both floating point arithmetic and integer arithmetic.
 
 The floating point class has also an adaptive filter
-method for the LMS algorithm with the standard
-parameters: `learning rate` and the `error` which adjusts
-the weights.
+method for the LMS algorithm.
 
 
 ## Installation
 
 ### Linux / Unix / MACOSX
 
-This is done with the standard sequence:
+The build system is `cmake`. Install the library with
+the standard sequence:
 ```
 cmake .
 make
@@ -29,7 +28,9 @@ should be used for your code development.
 ```
 cmake -G "Visual Studio 15 2017 Win64" .
 ```
-and then start Visual C++ and compile it.
+and then start Visual C++ and compile it. Usually
+you want to compile both the release and debug
+libraries.
 
 
 
@@ -51,6 +52,9 @@ f2 = 55
 b = signal.firwin(999,[f1/fs*2,f2/fs*2])
 np.savetxt("h.dat",b)
 ```
+this text file can then be imported into the filter at
+runtim or you convert it to a C floating point array and
+point the filter to it.
 
 For fixed point you need to scale up the coefficients,
 for example by 16 bits: np.savetxt("h.dat",b*65536)
@@ -71,6 +75,10 @@ Again, for fixed point "h" needs to be scaled.
 ```
 Fir1 fir("h.dat");
 ```
+or import the coefficients as a floating point array (double).
+```
+Fir1 fir(coefficients,number_of_coefficients)
+```
 2. for integer FIR filters
 ```
 Fir1fixed fir("h_fixed.dat",12);
@@ -81,14 +89,15 @@ a bitshift operation).
 
 and then you can filter your realtime data with:
 
-1.
+1. for double
 ```
 double b = fir.filter(a);
 ```
-2.
+2. for integer
 ```
 int b = fir.filter(a);
 ```
+
 ## Demos
 Demo programs are in the "demo" directory which show how to use the
 filters for both floating point and fixed point.
