@@ -121,7 +121,7 @@ response at its output.
 2. `fixeddemo` filters an example ECG with 50Hz noise. The coefficients
 are 12 bit and you can generate them either with OCTAVE/MATLAB or Python.
 The scripts are also provided.
-3. `lsmdemo` filters out 50Hz noise from an ECG with the help of
+3. `lmsdemo` filters out 50Hz noise from an ECG with the help of
 adaptive filtering by using the 50Hz powerline frequency as the input
 to the filter. This can be replaced by any reference artefact signal
 or signal which is correlated with the artefact.
