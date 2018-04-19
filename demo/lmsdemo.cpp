@@ -1,12 +1,14 @@
 // Usage Examples
 //
+// LMS demo
+// removes 50Hz from an ECG with a powerline reference
+// here generated with a simple sine. Should be ideally
+// also measured with another ADC channel and fed into
+// the filter.
 
 // This is the only include you need
 #include "Fir1.h"
 
-#include <sstream>
-#include <iostream>
-#include <iomanip>
 #include <stdio.h>
 
 #define NTAPS 100

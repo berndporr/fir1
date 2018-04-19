@@ -1,14 +1,9 @@
-// Usage Examples
-//
-// This shows you how to operate the filters
+// Floating point example
 //
 
 // This is the only include you need
 #include "Fir1.h"
 
-#include <sstream>
-#include <iostream>
-#include <iomanip>
 #include <stdio.h>
 
 int main (int,char**)

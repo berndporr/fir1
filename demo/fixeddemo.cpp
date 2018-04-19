@@ -13,9 +13,6 @@
 // This is the only include you need
 #include "Fir1fixed.h"
 
-#include <sstream>
-#include <iostream>
-#include <iomanip>
 #include <stdio.h>
 
 int main (int,char**)
