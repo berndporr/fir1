@@ -98,16 +98,6 @@ double b = fir.filter(a);
 int b = fir.filter(a);
 ```
 
-## Demos
-Demo programs are in the "demo" directory which show how to use the
-filters for both floating point and fixed point.
-1. `firdemo` sends an impulse into the filter and you should see the impulse
-response at its output.
-2. `fixeddemo` filters an example ECG with 50Hz noise. The coefficients
-are 12 bit and you can generate them either with OCTAVE/MATLAB or Python.
-The scripts are also provided.
-
-
 ## LMS algorithm
 
 You can adjust the FIR coefficients with the help of an error
@@ -121,6 +111,21 @@ with `setLearningRate(learning_rate)`.
 This error signal is usually calculated by subtracting the output
 of the filter from an input or desired signal, for example
 for artefact removal or system identification.
+
+
+## Demos
+Demo programs are in the "demo" directory which show how to use the
+filters for both floating point and fixed point.
+1. `firdemo` sends an impulse into the filter and you should see the impulse
+response at its output.
+2. `fixeddemo` filters an example ECG with 50Hz noise. The coefficients
+are 12 bit and you can generate them either with OCTAVE/MATLAB or Python.
+The scripts are also provided.
+3. `lsmdemo` filters out 50Hz noise from an ECG with the help of
+adaptive filtering by using the 50Hz powerline frequency as the input
+to the filter. This can be replaced by any reference artefact signal
+or signal which is correlated to the artefact.
+
 
 ## Credits
 

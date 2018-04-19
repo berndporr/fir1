@@ -104,15 +104,13 @@ void Fir1::lms_update(double error)
 	double *buf_val = buffer + offset;
 
 	while(buf_val >= buffer) {
-		*coeff += *buf_val-- * error * mu;
-		coeff++;
+		*coeff++ += *buf_val-- * error * mu;
 	}
 	
 	buf_val = buffer + taps-1;
 	
 	while(coeff < coeff_end) {
-		*coeff += *buf_val-- * error * mu;
-		coeff++;
+		*coeff++ += *buf_val-- * error * mu;
 	}
 }
 
