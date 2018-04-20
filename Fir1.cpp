@@ -21,12 +21,14 @@ THE SOFTWARE.
 */
 
 /* (C) 2013 Graeme Hattan & Bernd Porr */
+/* (C) 2018 Bernd Porr */
 
 #include "Fir1.h"
 
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <stdexcept>
 
 // give the filter an array of doubles for the coefficients
 Fir1::Fir1(double *coefficients, unsigned number_of_taps) :
@@ -57,9 +59,10 @@ Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
 	FILE* f=fopen(coeffFile,"rt");
 	if (!f)
 	{
-		fprintf(stderr,"Could not open file with coefficients: %s\n",coeffFile);
+		char tmp[256];
+		sprintf(tmp,"Could not open file with coefficients: %s\n",coeffFile);
 		taps = 0;
-		return;
+		throw std::invalid_argument(tmp);
 	}
 
 	if (taps == 0)
@@ -81,8 +84,10 @@ Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
 	{
 		if (fscanf(f,"%lf\n",coefficients+i)<1)
 		{
-			fprintf(stderr,"Could not read coefficients.\n");
-			exit(1);
+			char tmp[256];
+			sprintf(tmp,"Could not read the coefficients from %s\n",coeffFile);
+			taps = 0;
+			throw std::invalid_argument(tmp);
 		}
 	}
 	fclose(f);
@@ -100,9 +105,9 @@ void Fir1::lms_update(double error)
 {
 	double *coeff     = coefficients;
 	double *coeff_end = coefficients + taps;
-
+	
 	double *buf_val = buffer + offset;
-
+	
 	while(buf_val >= buffer) {
 		*coeff++ += *buf_val-- * error * mu;
 	}
@@ -112,6 +117,22 @@ void Fir1::lms_update(double error)
 	while(coeff < coeff_end) {
 		*coeff++ += *buf_val-- * error * mu;
 	}
+}
+
+
+
+double Fir1::tapInputPower()
+{
+	double *buf_val = buffer;
+	
+	double p = 0;
+	
+	for(int i = 0; i < taps; i++) {
+		p += (*buf_val) * (*buf_val);
+		buf_val++;
+	}
+	
+	return p;
 }
 
 

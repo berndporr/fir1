@@ -26,8 +26,6 @@ THE SOFTWARE.
 #define FIR1_H
 
 #include <stdio.h>
-#include <cmath>
-#include <complex>
 
 class Fir1
 {
@@ -69,6 +67,12 @@ public:
 
 	// returns the number of taps
 	unsigned getTaps() {return taps;};
+
+	// Returns the power of the of the buffer content:
+	// sum_k buffer[k]^2
+	// which is needed to implement a normalised LMS algorithm
+	// with an adaptive learning rate
+	double tapInputPower();
 
 private:
 	double        *coefficients = NULL;

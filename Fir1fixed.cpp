@@ -54,9 +54,10 @@ Fir1fixed::Fir1fixed(const char* coeffFile,
 	FILE* f=fopen(coeffFile,"rt");
 	if (!f)
 	{
-		fprintf(stderr,"Could not open file with coefficients: %s\n",coeffFile);
+		char tmp[256];
+		sprintf(tmp,"Could not read the coefficients from %s\n",coeffFile);
 		taps = 0;
-		return;
+		throw std::invalid_argument(tmp);
 	}
 
 	if (taps == 0)
@@ -81,8 +82,10 @@ Fir1fixed::Fir1fixed(const char* coeffFile,
 		// upset with numbers written as 6E2.
 		if (fscanf(f,"%f\n",&a)<1)
 		{
-			fprintf(stderr,"Could not read coefficients.\n");
-			exit(1);
+			char tmp[256];
+			sprintf(tmp,"Could not read the coefficients from %s\n",coeffFile);
+			taps = 0;
+			throw std::invalid_argument(tmp);
 		}
 		coefficients[i] = (short int)(a);
 	}
