@@ -1,7 +1,10 @@
-set(default_build_type "Release")
 cmake_minimum_required(VERSION 3.5)
 set (CMAKE_CXX_STANDARD 11)
 include(GNUInstallDirs)
+
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE "Release")
+endif()
 
 project(fir VERSION 1.2.3 LANGUAGES CXX)
 add_subdirectory(demo)

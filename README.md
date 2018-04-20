@@ -19,6 +19,8 @@ make
 sudo make install
 sudo ldconfig
 ```
+or for debugging run cmake with:
+```cmake -DCMAKE_BUILD_TYPE="Debug" .```
 
 ### Windows
 
