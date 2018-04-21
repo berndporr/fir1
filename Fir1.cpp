@@ -121,7 +121,7 @@ void Fir1::lms_update(double error)
 
 
 
-double Fir1::tapInputPower()
+double Fir1::getTapInputPower()
 {
 	double *buf_val = buffer;
 	
@@ -164,5 +164,10 @@ double Fir1::filter(double input)
 void Fir1::reset()
 {
 	memset(buffer, 0, sizeof(double)*taps);
+	offset = 0;
+}
+
+void Fir1::zeroCoeff() {
+	memset(coefficients, 0, sizeof(double)*taps);
 	offset = 0;
 }

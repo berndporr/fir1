@@ -65,6 +65,9 @@ public:
 	// reset the buffer
 	void reset();
 
+	// all coeff to zero
+	void zeroCoeff();
+
 	// returns the number of taps
 	unsigned getTaps() {return taps;};
 
@@ -72,7 +75,7 @@ public:
 	// sum_k buffer[k]^2
 	// which is needed to implement a normalised LMS algorithm
 	// with an adaptive learning rate
-	double tapInputPower();
+	double getTapInputPower();
 
 private:
 	double        *coefficients = NULL;
