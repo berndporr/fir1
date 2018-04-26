@@ -2,11 +2,12 @@
 
 ![alt tag](fir.png)
 
-This is a library which implements an efficient FIR filter
-in both floating point arithmetic and integer arithmetic.
+An efficient finite impulse response (FIR) filter class
+for both floating point and integer arithmetic.
 
-The floating point class has also an adaptive filter
-method for the LMS algorithm.
+The floating point class offers also adaptive filtering
+using the least mean square (LMS) or normalised least mean
+square (NLMS) algorithm.
 
 
 ## Installation
