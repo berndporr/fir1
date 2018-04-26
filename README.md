@@ -126,6 +126,12 @@ the filtering with `filter()`.
 The `lmsdemo` in the demo directory makes this concept much clearer how to remove
 artefacts with this method.
 
+![alt tag](lms.png)
+
+The above plot shows the filter in action which removes 50Hz noise with the adaptive
+filter. Learning is very fast and the learning rate here is deliberately kept low to
+show how it works.
+
 ### Stability
 
 The FIR filter itself is stable but the error signal changes the filter coefficients which
