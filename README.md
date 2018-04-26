@@ -119,9 +119,11 @@ the filtering with `filter()`.
 
 - Construct the Fir filter with all coefficients set to zero: `Fir1(nCoeff)`
 - Set the learning_rate with the method `setLearningRate(learning_rate)`.
-- The input of the filter is an additional signal which provides information how to minimise the error.
 - Define your error which needs to be minimised: `error = input_signal - fir_filter_output`
 - Feed the error back into the filter with the method `lms_update(error)`.
+
+The `lmsdemo` in the demo directory makes this concept much clearer how to remove
+artefacts with this method.
 
 ### Stability
 
