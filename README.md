@@ -1,5 +1,7 @@
 # FIR1
 
+![alt tag](fir.png)
+
 This is a library which implements an efficient FIR filter
 in both floating point arithmetic and integer arithmetic.
 
