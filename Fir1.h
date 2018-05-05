@@ -30,19 +30,17 @@ THE SOFTWARE.
 class Fir1
 {
 public:
-	// coefficients as floating point
-	// if the taps are left zero the program counts
-	// the number of coefficients by itself.
+	// Coefficients as double floats and the number of taps
 	Fir1(double *coefficients, unsigned number_of_taps);
 
-	// coefficients as a text file (for example from MATLAB)
+	// Coefficients as a text file (for example from Python)
 	// The number of taps is automatically detected
-	// when the taps are kept zero
+	// when the taps are kept zero.
 	Fir1(const char* coeffFile, unsigned number_of_taps = 0);
 
-	// init all coefficients and the buffer to zero
+	// Inits all coefficients and the buffer to zero
 	// This is useful for adaptive filters where we start with
-	// zero coefficients
+	// zero valued coefficients.
 	Fir1(unsigned number_of_taps);
 
 	// destructor
@@ -51,21 +49,20 @@ public:
 	// the actual filter function
 	double filter(double input);
 
-	// Adaptive filter weight update
-	// Every filter coefficient is updates with:
+	// Adaptive filter weight update:
+	// every filter coefficient is updated with:
 	// w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
-	// the error is calculated differently for different
-	// applications such as artefact removal or system identification.
 	void lms_update(double error);
 
-	// setting the learning rate for the LMS algorithm
+	// Setting the learning rate for the adaptive filter
 	void setLearningRate(double _mu) {mu = _mu;};
+	// Getting the learning rate for the adaptive filter
 	double getLearningRate() {return mu;};
 
-	// reset the buffer
+	// Resets the buffer (but not the coefficients)
 	void reset();
 
-	// all coeff to zero
+	// Sets all coefficients to zero
 	void zeroCoeff();
 
 	// returns the number of taps
@@ -74,7 +71,6 @@ public:
 	// Returns the power of the of the buffer content:
 	// sum_k buffer[k]^2
 	// which is needed to implement a normalised LMS algorithm
-	// with an adaptive learning rate
 	double getTapInputPower();
 
 private:
