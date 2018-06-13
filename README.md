@@ -111,7 +111,7 @@ int b = fir.filter(a);
 The least mean square algorithm adjusts the FIR coefficients w_k
 with the help of an error signal
 ```
-w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
+w_k(t+1) = w_k(t) + learning_rate * buffer_k(t) * error(t)
 ```
 using the function `lms_update(error)` while performing
 the filtering with `filter()`.
