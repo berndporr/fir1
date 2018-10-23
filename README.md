@@ -3,7 +3,7 @@
 ![alt tag](fir.png)
 
 An efficient finite impulse response (FIR) filter class
-for both floating point and integer arithmetic.
+in C++ and JAVA wrapper for Android.
 
 The floating point class offers also adaptive filtering
 using the least mean square (LMS) or normalised least mean
