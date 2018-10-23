@@ -27,13 +27,42 @@ Java_uk_me_berndporr_firj_Fir1_getInstance(JNIEnv *env,
 
 
 jdouble
-Java_uk_me_berndporr_firj_Fir1_filterInstance(JNIEnv *env,
+Java_uk_me_berndporr_firj_Fir1_filter(JNIEnv *env,
                                              jclass clazz,
                                              jlong instance,
                                              jdouble value) {
     Fir1 *fir = (Fir1 *) instance;
     if (fir == NULL) return 0;
     return fir->filter(value);
+}
+
+
+void
+Java_uk_me_berndporr_firj_Fir1_lmsUpdate(JNIEnv *env,
+                                              jclass clazz,
+                                              jlong instance,
+                                              jdouble error) {
+    Fir1 *fir = (Fir1 *) instance;
+    return fir->lms_update(error);
+}
+
+
+void
+Java_uk_me_berndporr_firj_Fir1_setLearningRate(JNIEnv *env,
+                                                 jclass clazz,
+                                                 jlong instance,
+                                                 jdouble mu) {
+    Fir1 *fir = (Fir1 *) instance;
+    return fir->setLearningRate(mu);
+}
+
+
+jdouble
+Java_uk_me_berndporr_firj_Fir1_getTapInputPower(JNIEnv *env,
+                                                 jclass clazz,
+                                                 jlong instance) {
+    Fir1 *fir = (Fir1 *) instance;
+    return fir->getTapInputPower();
 }
 
 
