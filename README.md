@@ -56,7 +56,7 @@ The subdirectory `firj` contains an Android project. Load
 it into Android studio and build it either as a release
 or debug binary. This generates an Android aar which you
 can import into your project. See the `InstrumentedTest.java`
-for an example how to use it.
+for instructional example.
 
 
 ## How to use it
