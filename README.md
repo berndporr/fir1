@@ -50,6 +50,13 @@ you want to compile both the release and debug
 libraries because they are not compatible to each
 other under Windows.
 
+### Android / JAVA
+
+The subdirectory `firj` contains an Android project. Load
+it into Android studio and build it either as a release
+or debug binary. This generates an Android aar which you
+can import into your project. See the `InstrumentedTest.java`
+for an example how to use it.
 
 
 ## How to use it
