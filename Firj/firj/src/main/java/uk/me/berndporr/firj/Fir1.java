@@ -1,10 +1,14 @@
 package uk.me.berndporr.firj;
 
-public class Fir {
+import android.util.Log;
+
+public class Fir1 {
+
+    static final String TAG = "Fir1";
 
     private long instance = 0;
 
-    public void init(double[] coefficients) {
+    public Fir1(double[] coefficients) {
         instance = getInstance(coefficients);
     }
     public double filter(double v) {
@@ -20,6 +24,7 @@ public class Fir {
 
     static {
         System.loadLibrary("fir-lib");
+        Log.d(TAG,"Fir1 library loaded");
     }
 
 }

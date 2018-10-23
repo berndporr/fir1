@@ -31,14 +31,15 @@ THE SOFTWARE.
 #include <stdexcept>
 
 // give the filter an array of doubles for the coefficients
-Fir1::Fir1(double *coefficients, unsigned number_of_taps) :
-	coefficients(coefficients),
-	// addition of brackets should mean the array is 
-	// value-initialised to be all zeros
-	buffer(new double[number_of_taps]()),  
+Fir1::Fir1(double *_coefficients, unsigned number_of_taps) :
+	coefficients(new double[number_of_taps]),
+	buffer(new double[number_of_taps]()),
 	taps(number_of_taps),
-	offset(0)
-{}
+	offset(0) {
+	for(int i=0;i<number_of_taps;i++) {
+		coefficients[i] = _coefficients[i];
+	}
+}
 
 // init all coefficients and the buffer to zero
 Fir1::Fir1(unsigned number_of_taps) :
