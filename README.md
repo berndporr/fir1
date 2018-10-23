@@ -105,6 +105,7 @@ or import the coefficients as a floating point array (double).
 ```
 Fir1 fir(coefficients,number_of_coefficients)
 ```
+
 2. for integer FIR filters
 ```
 Fir1fixed fir("h_fixed.dat",12);
@@ -112,6 +113,7 @@ Fir1fixed fir("h_fixed.dat",12);
 where the coefficients have been scaled up by 2^12 and the
 filter will scale them down by this amount (with the help of
 a bitshift operation).
+
 3. for JAVA
 ```
 Fir1 fir = new Fir1(coeff);
@@ -125,10 +127,12 @@ and returns the fir filter class.
 ```
 double b = fir.filter(a);
 ```
+
 2. for integer
 ```
 int b = fir.filter(a);
 ```
+
 3. for JAVA
 ```
 double b = fir.filter(a)
@@ -140,6 +144,7 @@ double b = fir.filter(a)
 ```
 delete fir;
 ```
+
 2. JAVA
 ```
 fir.release();
