@@ -18,6 +18,15 @@ public class Fir1 {
     }
 
     /**
+     * Inits an FIR filter with all coefficients and the buffer set to zero.
+     * That's useful for setting up the LMS filter.
+     * @param numberOfTaps of the FIR filter.
+     */
+    public Fir1(int numberOfTaps) {
+        instance = getInstanceLMS(numberOfTaps);
+    }
+
+    /**
      * Realtime / causal filter operation: one sample in and
      * one sample out
      * @param v: input value
@@ -62,6 +71,7 @@ public class Fir1 {
     }
 
     private static native long getInstance(double[] coefficients);
+    private static native long getInstanceLMS(int numberOfTaps);
     private static native double filter(long instance, double v);
     private static native void releaseInstance(long instance);
     private static native void lmsUpdate(long instance, double error);

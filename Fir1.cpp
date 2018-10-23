@@ -38,16 +38,19 @@ Fir1::Fir1(double *_coefficients, unsigned number_of_taps) :
 	offset(0) {
 	for(int i=0;i<number_of_taps;i++) {
 		coefficients[i] = _coefficients[i];
+		buffer[i] = 0;
 	}
 }
 
 // init all coefficients and the buffer to zero
 Fir1::Fir1(unsigned number_of_taps) :
-	coefficients(new double[number_of_taps]()),
-	buffer(new double[number_of_taps]()),  
+	coefficients(new double[number_of_taps]),
+	buffer(new double[number_of_taps]),  
 	taps(number_of_taps),
-	offset(0)
-{}
+	offset(0) {
+	zeroCoeff();
+	reset();
+}
 
 // one coefficient per line
 Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
@@ -92,6 +95,7 @@ Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
 		}
 	}
 	fclose(f);
+	reset();
 }
 
 

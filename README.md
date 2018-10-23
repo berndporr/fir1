@@ -56,7 +56,7 @@ The subdirectory `firj` contains an Android project. Load
 it into Android studio and build it either as a release
 or debug binary. This generates an Android aar which you
 can import into your project. See the `InstrumentedTest.java`
-for instructional example.
+for an instructional example.
 
 
 ## How to use it
@@ -112,6 +112,12 @@ Fir1fixed fir("h_fixed.dat",12);
 where the coefficients have been scaled up by 2^12 and the
 filter will scale them down by this amount (with the help of
 a bitshift operation).
+3. for JAVA
+```
+Fir1 fir = new Fir1(coeff);
+```
+where `coeff` is an array of double precision coefficients
+and returns the fir filter class.
 
 ### Realtime filtering
 
@@ -123,6 +129,22 @@ double b = fir.filter(a);
 ```
 int b = fir.filter(a);
 ```
+3. for JAVA
+```
+double b = fir.filter(a)
+```
+
+### Destructor
+
+1. C++
+```
+delete fir;
+```
+2. JAVA
+```
+fir.release();
+```
+to release the underlying C++ class.
 
 ## LMS algorithm
 
@@ -183,6 +205,8 @@ The scripts are also provided.
 adaptive filtering by using the 50Hz powerline frequency as the input
 to the filter. This can be replaced by any reference artefact signal
 or signal which is correlated with the artefact.
+4. JAVA has an `InstrumentedTest` which filters both a delta pulse and
+a step function.
 
 
 ## Credits
