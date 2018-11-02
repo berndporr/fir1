@@ -1,7 +1,6 @@
 %module fir1
 %{
 	#define SWIG_FILE_WITH_INIT
-	#include <stdio.h>
 	#include "Fir1.h"
 %}
 

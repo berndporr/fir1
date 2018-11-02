@@ -17,12 +17,14 @@ if platform == "linux" or platform == "linux2":
 							sources=['fir1.i'],
 							extra_compile_args=['-std=c++11'],
                                                         swig_opts=['-c++','-py3'],
+                                                        extra_link_args=['libfir_static.a'],
 							)
 elif platform == "win32":
 	fir1_module = Extension('_fir1',
 							sources=['fir1.i'],
 							extra_compile_args=['/DWIN32_LEAN_AND_MEAN'],
                                                         libraries=['ws2_32'],
+                                                        extra_link_args=['Release\\libfir_static.lib'],
                                                         swig_opts=['-c++','-py3'],
 							)
 
