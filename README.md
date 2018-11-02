@@ -32,6 +32,8 @@ Add this repository to your package manager:
 ```
 sudo add-apt-repository ppa:berndporr/usbdux
 sudo apt-get update
+sudo apt install fir1
+sudo apt install fir1-dev
 ```
 This adds `fir1-dev` and `fir1` to your package list.
 The demo files are in `/usr/share/doc/fir1-dev`. Copy them into a working

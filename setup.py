@@ -30,7 +30,7 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.5',
+       version = '1.3.0.6',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",
