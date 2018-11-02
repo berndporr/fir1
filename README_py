@@ -2,12 +2,12 @@
 Fir1
 ====
 
-An efficient finite impulse response (FIR) filter class
+An efficient Finite Impulse Response (FIR) filter class
 written in C++ with python wrapper.
 
-The class offers also adaptive filtering
-using the least mean square (LMS) or normalised least mean
-square (NLMS) algorithm.
+Adaptive filtering is also implemented using the Least Mean 
+Square (LMS) or Normalised Least Mean
+Square (NLMS) algorithm.
 
 Installation
 ============
@@ -81,9 +81,13 @@ with the method ``filter()``.
 LMS adaptive filter
 -------------------
 
-The demo directory of the main github project has an
-`lms_50Hz_ecg_filter.py` which removes 50Hz from an
-ECG with the help of the lms filter. Check out the
-fir1 homepage for an extensive explanation:
+The file `lms_50Hz_ecg_filter.py` removes 50Hz from 
+an ECG with the help of the lms filter. 
+The filter learns its own frequency response from a
+reference 50Hz sine wave. 
+
+Both the demo file and an explanation how the LMS
+filter works can be found on the homepage of the
+project:
 
 https://github.com/berndporr/fir1
