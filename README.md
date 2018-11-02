@@ -64,13 +64,18 @@ for an instructional example.
 
 The preferred way to install is with pip:
 ```
+    add-apt-repository ppa:berndporr/usbdux
+    apt-get update
+    apt install fir1
+    apt install fir1-dev
     pip3 install fir1
 ```
 
 You can also install from source with:
 ```
-    git clone https://github.com/berndporr/fir1
-    cd fir1
+    cmake .
+    make
+    make install    
     python3 setup.py install
 ```
 
