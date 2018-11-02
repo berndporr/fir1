@@ -7,7 +7,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 	set(CMAKE_BUILD_TYPE "Release")
 endif()
 
-project(fir VERSION 1.2.3 LANGUAGES CXX)
+project(fir VERSION 1.3.0 LANGUAGES CXX)
 add_subdirectory(demo)
 
 set(LIBSRC
