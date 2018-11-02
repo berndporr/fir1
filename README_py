@@ -1,0 +1,50 @@
+====
+Fir1
+====
+
+An efficient finite impulse response (FIR) filter class
+written in C++ with python wrapper.
+
+The class offers also adaptive filtering
+using the least mean square (LMS) or normalised least mean
+square (NLMS) algorithm.
+
+Installation
+============
+
+The preferred way to install is with pip::
+
+    pip3 install fir1
+
+You can also install from source with ``python3 setup.py install``.
+
+    git clone https://github.com/berndporr/fir1
+    cd fir1
+    python3 setup.py install
+
+
+Usage
+=====
+
+Realtime filtering
+------------------
+
+The filter is a realtime filter which always receives the
+values one by one so can process data as it comes in from
+an ADC converter. This is simulated here with the for loop::
+
+    import fir1
+    b = signal.firwin(999,0.1)
+    f = fir1.Fir1(b)
+    for i in range(len(noisy_signal)):
+        clean_signal[i] = f.filter(noisy_signal[i])
+
+The constructor ``Fir1(b)`` receives the coefficients and
+then filtering is performed with the method ``filter()``.
+
+
+LMS adaptive filter
+-------------------
+
+Please check the C++ code for examples and the main
+github page. The functions are identical.
