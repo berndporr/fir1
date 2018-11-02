@@ -14,11 +14,11 @@ def read(fname):
 
 if platform == "linux" or platform == "linux2":
 	fir1_module = Extension('_fir1',
-							sources=['fir1.i'],
-							extra_compile_args=['-std=c++11'],
-                                                        swig_opts=['-c++','-py3'],
-                                                        extra_link_args=['libfir_static.a'],
-							)
+				sources=['fir1.i'],
+				extra_compile_args=['-std=c++11'],
+                                swig_opts=['-c++','-py3'],
+                                libraries=['fir'],
+				)
 elif platform == "win32":
 	fir1_module = Extension('_fir1',
 							sources=['fir1.i'],
@@ -30,7 +30,7 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.0',
+       version = '1.3.0.5',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",

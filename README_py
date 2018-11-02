@@ -12,15 +12,32 @@ square (NLMS) algorithm.
 Installation
 ============
 
-The preferred way to install is with pip::
+Linux
+-----
 
+If you want to install it via pip you first need
+to install the fir binary filter package::
+
+    sudo add-apt-repository ppa:berndporr/usbdux
+    sudo apt-get update
+    sudo apt install fir1
+
+Then you install the source of the package with pip::
     pip3 install fir1
 
-You can also install from source with ``python3 setup.py install``.
+You can also install from source::
 
     git clone https://github.com/berndporr/fir1
     cd fir1
+    cmake .
+    make
+    make install
     python3 setup.py install
+
+
+Windows
+-------
+This is alpha and needs to be tested.
 
 
 Usage
