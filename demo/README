@@ -2,3 +2,5 @@ firdemo: sends an impulse response through the filter (floating point)
 fixeddemo: sends an ECG with 50Hz noise through the fixed point filter
 lmsdemo: removes 50Hz with the help of adaptive filter using LMS
 filter_ecg.py: Pure python program which loads the fir1 module to filter 50Hz
+lms_50Hz_ecg_filter.py: removes 50Hz with the help of adaptive filter using LMS
+

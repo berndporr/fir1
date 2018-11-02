@@ -24,6 +24,7 @@ to install the fir1 filter binaries::
     sudo apt install fir1-dev
 
 Then install the python package with pip::
+
     pip3 install fir1
 
 You can also install from source::
@@ -80,5 +81,9 @@ with the method ``filter()``.
 LMS adaptive filter
 -------------------
 
-Please check the C++ code for examples and the main
-github page. The functions are identical.
+The demo directory of the main github project has an
+`lms_50Hz_ecg_filter.py` which removes 50Hz from an
+ECG with the help of the lms filter. Check out the
+fir1 homepage for an extensive explanation:
+
+https://github.com/berndporr/fir1
