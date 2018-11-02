@@ -7,6 +7,7 @@ setup.py file for Fir1
 from setuptools import setup
 from setuptools import Extension
 import os
+import numpy
 from sys import platform
 
 def read(fname):
@@ -23,14 +24,15 @@ elif platform == "win32":
 	fir1_module = Extension('_fir1',
 							sources=['fir1.i'],
 							extra_compile_args=['/DWIN32_LEAN_AND_MEAN'],
-                                                        libraries=['ws2_32'],
-                                                        extra_link_args=['Release\\libfir_static.lib'],
-                                                        swig_opts=['-c++','-py3'],
+                            libraries=['ws2_32'],
+                            extra_link_args=['Release\\fir_static.lib'],
+                            swig_opts=['-c++','-py3'],
+							include_dirs=[numpy.get_include()],
 							)
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.7',
+       version = '1.3.0.9',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",
@@ -42,7 +44,7 @@ setup (name = 'fir1',
        classifiers=[
           'Intended Audience :: Developers',
           'Operating System :: POSIX',
-	  'Operating System :: Microsoft :: Windows',
+	      'Operating System :: Microsoft :: Windows',
           'Programming Language :: Python'
           ]
       )

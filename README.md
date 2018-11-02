@@ -62,20 +62,26 @@ for an instructional example.
 
 ### Python
 
-The preferred way to install is with pip (Linux):
+#### Pre-compiled package
+
+Linux:
 ```
     add-apt-repository ppa:berndporr/usbdux
     apt-get update
     apt install fir1
     apt install fir1-dev
+	pip3 install fir1
+```
+
+Windows:
+```
     pip3 install fir1
 ```
 
-Install from source with:
+#### Installation from source
+First build the FIR C++ library 
+and then type:
 ```
-    cmake .
-    make
-    make install    
     python3 setup.py install
 ```
 

@@ -16,7 +16,7 @@ Linux
 -----
 
 If you want to install it via pip you first need
-to install the fir1 filter package::
+to install the fir1 filter binaries::
 
     sudo add-apt-repository ppa:berndporr/usbdux
     sudo apt-get update
@@ -25,9 +25,6 @@ to install the fir1 filter package::
 
 Then install the python package with pip::
     pip3 install fir1
-
-Note that this will install from source so you need
-to have swig installed.
 
 You can also install from source::
 
@@ -41,17 +38,32 @@ You can also install from source::
 
 Windows
 -------
-The setup.py is alpha and needs to be tested.
 
+There is a pre-compiled package which can be installed
+via pip::
 
+    pip3 install fir1
+
+If you want to compile from source you first need to
+build the static fir windows library which is called
+`fir_static.lib`. Open the command line and type::
+
+    cmake -G "Visual Studio 15 2017 Win64" .
+
+Then start Visual Studio and build `fir.sln`. Go
+back to the command line and type::
+
+    python setup.py install
+	
+	
 Usage
 =====
 
 Realtime filtering
 ------------------
 
-The filter is a realtime filter which always receives the
-values one by one so can process data as it comes in from
+The filter is a realtime filter which receives samples
+one by one so it can process data as it arrives from
 an ADC converter. This is simulated here with the for loop::
 
     import fir1
@@ -60,8 +72,9 @@ an ADC converter. This is simulated here with the for loop::
     for i in range(len(noisy_signal)):
         clean_signal[i] = f.filter(noisy_signal[i])
 
-The constructor ``Fir1(b)`` receives the coefficients and
-then filtering is performed with the method ``filter()``.
+The constructor ``Fir1()`` receives the filter coefficients 
+(= impulse response) and then filtering is performed 
+with the method ``filter()``.
 
 
 LMS adaptive filter
