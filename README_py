@@ -12,18 +12,7 @@ Square (NLMS) algorithm.
 Installation
 ============
 
-Linux
------
-
-If you want to install it via pip you first need
-to install the fir1 filter binaries::
-
-    sudo add-apt-repository ppa:berndporr/usbdux
-    sudo apt-get update
-    sudo apt install fir1
-    sudo apt install fir1-dev
-
-Then install the python package with pip::
+Install the python package with pip::
 
     pip3 install fir1
 
@@ -31,32 +20,9 @@ You can also install from source::
 
     git clone https://github.com/berndporr/fir1
     cd fir1
-    cmake .
-    make
-    make install
     python3 setup.py install
 
 
-Windows
--------
-
-There is a pre-compiled package which can be installed
-via pip::
-
-    pip3 install fir1
-
-If you want to compile from source you first need to
-build the static fir windows library which is called
-`fir_static.lib`. Open the command line and type::
-
-    cmake -G "Visual Studio 15 2017 Win64" .
-
-Then start Visual Studio and build `fir.sln`. Go
-back to the command line and type::
-
-    python setup.py install
-	
-	
 Usage
 =====
 
@@ -84,7 +50,18 @@ LMS adaptive filter
 The file `lms_50Hz_ecg_filter.py` removes 50Hz from 
 an ECG with the help of the lms filter. 
 The filter learns its own frequency response from a
-reference 50Hz sine wave. 
+reference 50Hz sine wave::
+
+    f = fir1.Fir1(NTAPS)
+    f.setLearningRate(LEARNING_RATE);
+
+    y= np.empty(len(ecg))
+    for i in range(len(ecg)):
+        ref_noise = np.sin(2.0 * np.pi / 20.0 * i);
+        canceller = f.filter(ref_noise)
+        output_signal = ecg[i] - canceller
+        f.lms_update(output_signal)
+        y[i] = output_signal
 
 Both the demo file and an explanation how the LMS
 filter works can be found on the homepage of the

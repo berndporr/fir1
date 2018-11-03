@@ -13,26 +13,25 @@ from sys import platform
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-if platform == "linux" or platform == "linux2":
+if platform == "linux" or platform == "linux2" or platform == "Darwin" or platform == "darwin":
 	fir1_module = Extension('_fir1',
-				sources=['fir1.i'],
+				sources=['fir1.i','Fir1.cpp'],
 				extra_compile_args=['-std=c++11'],
                                 swig_opts=['-c++','-py3'],
-                                libraries=['fir'],
 				)
 elif platform == "win32":
 	fir1_module = Extension('_fir1',
-							sources=['fir1.i'],
-							extra_compile_args=['/DWIN32_LEAN_AND_MEAN'],
+			    sources=['fir1.i','Fir1.cpp'],
+			    extra_compile_args=['/DWIN32_LEAN_AND_MEAN'],
                             libraries=['ws2_32'],
                             extra_link_args=['Release\\fir_static.lib'],
                             swig_opts=['-c++','-py3'],
-							include_dirs=[numpy.get_include()],
-							)
+			    include_dirs=[numpy.get_include()],
+	                       )
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.10',
+       version = '1.3.0.12',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",

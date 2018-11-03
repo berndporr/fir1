@@ -64,16 +64,7 @@ for an instructional example.
 
 #### Pre-compiled package
 
-Linux:
-```
-    add-apt-repository ppa:berndporr/usbdux
-    apt-get update
-    apt install fir1
-    apt install fir1-dev
-	pip3 install fir1
-```
-
-Windows:
+Windows / Linux / Mac (untested)
 ```
     pip3 install fir1
 ```
