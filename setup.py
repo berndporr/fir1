@@ -18,6 +18,7 @@ if platform == "linux" or platform == "linux2" or platform == "darwin":
 				sources=['fir1.i','Fir1.cpp'],
 				extra_compile_args=['-std=c++11'],
                                 swig_opts=['-c++','-py3'],
+			        include_dirs=[numpy.get_include()],
 				)
 elif platform == "win32":
 	fir1_module = Extension('_fir1',
@@ -29,7 +30,7 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.14',
+       version = '1.3.0.15',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",

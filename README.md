@@ -64,7 +64,7 @@ for an instructional example.
 
 #### Pre-compiled package
 
-Windows / Linux / Mac (untested)
+Windows / Linux / Mac
 ```
     pip3 install fir1
 ```
