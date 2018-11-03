@@ -13,7 +13,7 @@ from sys import platform
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-if platform == "linux" or platform == "linux2" or platform == "Darwin" or platform == "darwin":
+if platform == "linux" or platform == "linux2" or platform == "darwin":
 	fir1_module = Extension('_fir1',
 				sources=['fir1.i','Fir1.cpp'],
 				extra_compile_args=['-std=c++11'],
@@ -29,7 +29,7 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.12',
+       version = '1.3.0.13',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",
