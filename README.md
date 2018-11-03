@@ -70,8 +70,8 @@ Windows / Linux / Mac
 ```
 
 #### Installation from source
-First build the FIR C++ library 
-and then type:
+
+Windows / Linux / Mac
 ```
     python3 setup.py install
 ```
@@ -97,7 +97,7 @@ f2 = 55
 b = signal.firwin(999,[f1/fs*2,f2/fs*2])
 ```
 For fixed point you need to scale up the coefficients,
-for example by 16 bits: np.savetxt("h.dat",b*65536)
+for example by 15 bits: b*32768.
 
 #### octave/MATLAB:
 ```
