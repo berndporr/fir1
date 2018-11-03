@@ -29,7 +29,7 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.3.0.13',
+       version = '1.3.0.14',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",
@@ -41,7 +41,7 @@ setup (name = 'fir1',
        classifiers=[
           'Intended Audience :: Developers',
           'Operating System :: POSIX',
-	      'Operating System :: Microsoft :: Windows',
-          'Programming Language :: Python'
+	  'Operating System :: Microsoft :: Windows',
+          'Programming Language :: Python :: 3',
           ]
       )

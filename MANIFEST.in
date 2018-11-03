@@ -1,0 +1,5 @@
+include *.py
+include README_py
+include numpy.i
+include Fir1.h
+include Fir1.cpp
