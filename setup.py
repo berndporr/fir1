@@ -23,8 +23,6 @@ elif platform == "win32":
 	fir1_module = Extension('_fir1',
 			    sources=['fir1.i','Fir1.cpp'],
 			    extra_compile_args=['/DWIN32_LEAN_AND_MEAN'],
-                            libraries=['ws2_32'],
-                            extra_link_args=['Release\\fir_static.lib'],
                             swig_opts=['-c++','-py3'],
 			    include_dirs=[numpy.get_include()],
 	                       )
