@@ -39,6 +39,9 @@ setup (name = 'fir1',
        ext_modules = [fir1_module],
        py_modules = ["fir1"],
        license='MIT',
+       install_requires=[
+          'numpy',
+       ],
        classifiers=[
           'Intended Audience :: Developers',
           'Operating System :: POSIX',
