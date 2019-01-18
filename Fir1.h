@@ -30,6 +30,20 @@ THE SOFTWARE.
 class Fir1
 {
 public:
+	// Coefficients as a const double array
+	// The template parameter provides the number of coefficients
+	template <int nTaps>
+		Fir1(const double (&_coefficients)[nTaps]) :
+		coefficients(new double[nTaps]),
+		buffer(new double[nTaps]()),
+		taps(nTaps),
+		offset(0) {
+		for(int i=0;i<nTaps;i++) {
+			coefficients[i] = _coefficients[i];
+			buffer[i] = 0;
+		}
+	}
+
 	// Coefficients as double floats and the number of taps
 	Fir1(double *coefficients, unsigned number_of_taps);
 
