@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2019 Graeme Hattan & Bernd Porr */
 
 #include "Fir1fixed.h"
 
@@ -66,7 +66,7 @@ Fir1fixed::Fir1fixed(const char* coeffFile,
 		rewind(f);
 	}
 
-	assert (taps > 0);
+	if (taps < 1) throw std::invalid_argument("No data in the file.");
 	
 	buffer = new short int[taps];
 	coefficients = new short int[taps];
@@ -74,16 +74,15 @@ Fir1fixed::Fir1fixed(const char* coeffFile,
 	assert( buffer != NULL );
 	assert( coefficients != NULL );
 
-	for(int i=0;i<taps;i++)
+	for(unsigned i=0;i<taps;i++)
 	{
 		float a;
-		// we scan  first as float because C gets
+		// we scan first as float because C gets
 		// upset with numbers written as 6E2.
 		if (fscanf(f,"%f\n",&a)<1)
 		{
 			char tmp[256];
 			sprintf(tmp,"Could not read the coefficients from %s\n",coeffFile);
-			taps = 0;
 			throw std::invalid_argument(tmp);
 		}
 		coefficients[i] = (short int)(a);

@@ -20,13 +20,13 @@ int main (int,char**)
 	// inits the filter
 	Fir1fixed fir("coeff12bit.dat",12);
 
-	// resets the delay line to zero
-	fir.reset ();
-      
 	// gets the number of taps
 	int taps = fir.getTaps();
 
 	printf("taps = %d\n",taps);
+
+	const short int averageCoeff[] = {1,1,1,1};
+	Fir1fixed averageFilt(averageCoeff,2);
 
 	FILE *finput = fopen("ecg50hz.dat","rt");
 	FILE *foutput = fopen("ecg_filtered.dat","wt");
@@ -36,7 +36,11 @@ int main (int,char**)
 		// we scan as float because the %d gets confused
                 // with 6E2 which is outputted by octave
 		if (fscanf(finput,"%f\n",&a)<1) break;
-		short int b = fir.filter((short int)a);
+		short int b = (short int)a;
+		// 50Hz removal
+		b = fir.filter(b);
+		// smoothing
+		b = averageFilt.filter(b);
 		fprintf(foutput,"%f\n",(float)b);
 	}
 	fclose(finput);

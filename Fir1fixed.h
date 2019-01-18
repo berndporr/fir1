@@ -35,7 +35,7 @@ THE SOFTWARE.
 class Fir1fixed {
 public:
         /**
-         * Coefficients as an array of short ints
+         * Coefficients as an array of short ints (and length provided separately)
          * \param coefficients Array of the coefficients scaled up by 2^bitshift
          * \param bitshift Scaling factor of the coefficients as power of 2: 2^bitshift
          * \param number_of_taps Number of taps (= number of coefficients)
@@ -45,7 +45,7 @@ public:
 		  unsigned number_of_taps);
 
 	/**
-         * Coefficients as an array of const short ints (length automatically detected)
+         * Coefficients as an const array of short ints (and length automatically detected)
          * \param _coefficients Array of the coefficients (const short) scaled up by 2^bitshift
          * \param bitshift Scaling factor of the coefficients as power of 2: 2^bitshift
          **/
