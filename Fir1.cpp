@@ -34,9 +34,8 @@ THE SOFTWARE.
 Fir1::Fir1(double *_coefficients, unsigned number_of_taps) :
 	coefficients(new double[number_of_taps]),
 	buffer(new double[number_of_taps]()),
-	taps(number_of_taps),
-	offset(0) {
-	for(int i=0;i<number_of_taps;i++) {
+	taps(number_of_taps) {
+	for(unsigned int i=0;i<number_of_taps;i++) {
 		coefficients[i] = _coefficients[i];
 		buffer[i] = 0;
 	}
@@ -46,17 +45,14 @@ Fir1::Fir1(double *_coefficients, unsigned number_of_taps) :
 Fir1::Fir1(unsigned number_of_taps) :
 	coefficients(new double[number_of_taps]),
 	buffer(new double[number_of_taps]),  
-	taps(number_of_taps),
-	offset(0) {
+	taps(number_of_taps) {
 	zeroCoeff();
 	reset();
 }
 
 // one coefficient per line
 Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
-	offset(0),
-	taps(number_of_taps)
-{
+	taps(number_of_taps) {
 	buffer = NULL;
 	coefficients = NULL;
 
@@ -76,7 +72,7 @@ Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
 		rewind(f);
 	}
 
-	assert (taps > 0);
+	if (taps == 0) throw std::invalid_argument("The filter has no coefficients. nTaps = 0.");
 	
 	buffer = new double[taps];
 	coefficients = new double[taps];
@@ -84,7 +80,7 @@ Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
 	assert( buffer != NULL );
 	assert( coefficients != NULL );
 
-	for(int i=0;i<taps;i++)
+	for(unsigned int i=0;i<taps;i++)
 	{
 		if (fscanf(f,"%lf\n",coefficients+i)<1)
 		{
@@ -101,15 +97,15 @@ Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
 
 Fir1::~Fir1()
 {
-  delete[] buffer;
-  delete[] coefficients;
+	delete[] buffer;
+	delete[] coefficients;
 }
 
 
 void Fir1::lms_update(double error)
 {
 	double *coeff     = coefficients;
-	double *coeff_end = coefficients + taps;
+	const double *coeff_end = coefficients + taps;
 	
 	double *buf_val = buffer + offset;
 	
@@ -132,7 +128,7 @@ double Fir1::getTapInputPower()
 	
 	double p = 0;
 	
-	for(int i = 0; i < taps; i++) {
+	for(unsigned int i = 0; i < taps; i++) {
 		p += (*buf_val) * (*buf_val);
 		buf_val++;
 	}
@@ -145,7 +141,7 @@ double Fir1::getTapInputPower()
 double Fir1::filter(double input)
 {
 	double *coeff     = coefficients;
-	double *coeff_end = coefficients + taps;
+	const double *coeff_end = coefficients + taps;
 
 	double *buf_val = buffer + offset;
 

@@ -27,70 +27,108 @@ THE SOFTWARE.
 
 #include <stdio.h>
 
-class Fir1
-{
+/**
+ * Finite impulse response filter. The precision is double.
+ * It takes as an input a file with coefficients or an double
+ * array.
+ **/
+class Fir1 {
 public:
-	// Coefficients as a const double array
-	// The template parameter provides the number of coefficients
-	template <int nTaps>
-		Fir1(const double (&_coefficients)[nTaps]) :
-		coefficients(new double[nTaps]),
+	/** 
+         * Coefficients as a const double array. Because the array is const
+         * the number of taps is identical to the length of the array.
+         * \param _coefficients A const double array with the impulse response.
+         **/
+	template <int nTaps> Fir1(const double (&_coefficients)[nTaps]) :
+	coefficients(new double[nTaps]),
 		buffer(new double[nTaps]()),
-		taps(nTaps),
-		offset(0) {
+		taps(nTaps) {
 		for(int i=0;i<nTaps;i++) {
 			coefficients[i] = _coefficients[i];
 			buffer[i] = 0;
 		}
 	}
 
-	// Coefficients as double floats and the number of taps
+	/**
+         * Coefficients as a (non-constant-) double array where the length needs to be specified.
+	 * \param coefficients Coefficients as double array.
+         * \param number_of_taps Number of taps (needs to match the number of coefficients
+         **/
 	Fir1(double *coefficients, unsigned number_of_taps);
 
-	// Coefficients as a text file (for example from Python)
-	// The number of taps is automatically detected
-	// when the taps are kept zero.
+	/** Coefficients as a text file (for example from Python)
+	 * The number of taps is automatically detected
+	 * when the taps are kept zero.
+         * \param coeffFile Patht to textfile where every line contains one coefficient
+         * \param number_of_taps Number of taps (0 = autodetect)
+         **/
 	Fir1(const char* coeffFile, unsigned number_of_taps = 0);
 
-	// Inits all coefficients and the buffer to zero
-	// This is useful for adaptive filters where we start with
-	// zero valued coefficients.
+	/** 
+         * Inits all coefficients and the buffer to zero
+	 * This is useful for adaptive filters where we start with
+	 * zero valued coefficients.
+         **/
 	Fir1(unsigned number_of_taps);
 
-	// destructor
+	/**
+         * Releases the coefficients and buffer.
+         **/
 	~Fir1();
 
-	// the actual filter function
+	/**
+         * The actual filter function operation: it receives one sample
+         * and returns one sample.
+         * \param input The input sample.
+         **/
 	double filter(double input);
 
-	// Adaptive filter weight update:
-	// every filter coefficient is updated with:
-	// w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
+	/**
+         * LMS adaptive filter weight update:
+	 * Every filter coefficient is updated with:
+	 * w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
+         * \param error Is the term error(n), the error which adjusts the FIR conefficients.
+         **/
 	void lms_update(double error);
 
-	// Setting the learning rate for the adaptive filter
+	/**
+         * Setting the learning rate for the adaptive filter.
+         * \param _mu The learning rate (i.e. rate of the change by the error signal)
+         **/
 	void setLearningRate(double _mu) {mu = _mu;};
-	// Getting the learning rate for the adaptive filter
+
+	/**
+         * Getting the learning rate for the adaptive filter.
+         **/
 	double getLearningRate() {return mu;};
 
-	// Resets the buffer (but not the coefficients)
+	/**
+         * Resets the buffer (but not the coefficients)
+         **/
 	void reset();
 
-	// Sets all coefficients to zero
+	/** 
+         * Sets all coefficients to zero
+         **/
 	void zeroCoeff();
 
-	// returns the number of taps
+	/**
+         * Returns the number of taps.
+         **/
 	unsigned getTaps() {return taps;};
 
-	// Returns the power of the of the buffer content:
-	// sum_k buffer[k]^2
-	// which is needed to implement a normalised LMS algorithm
+	/**
+         * Returns the power of the of the buffer content:
+	 * sum_k buffer[k]^2
+	 * which is needed to implement a normalised LMS algorithm.
+         **/
 	double getTapInputPower();
 
 private:
-	double        *coefficients = NULL;
-	double        *buffer = NULL;
-	unsigned      taps = 0, offset = 0;
+	double        *coefficients;
+	double        *buffer;
+	unsigned      taps;
+	unsigned      offset = 0;
 	double        mu = 0;
 };
 
