@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2019 Graeme Hattan & Bernd Porr */
 
 #ifndef FIR1FIXED_H
 #define FIR1FIXED_H
@@ -29,10 +29,16 @@ THE SOFTWARE.
 #include <cmath>
 #include <complex>
 
+/**
+ * Fixed point FIR filter with short int coefficients and data processed as short int.
+ **/
 class Fir1fixed {
 public:
         /**
          * Coefficients as an array of short ints
+         * \param coefficients Array of the coefficients scaled up by 2^bitshift
+         * \param bitshift Scaling factor of the coefficients as power of 2: 2^bitshift
+         * \param number_of_taps Number of taps (= number of coefficients)
          **/
 	Fir1fixed(short int *coefficients, 
 		  unsigned bitshift,
@@ -40,6 +46,8 @@ public:
 
 	/**
          * Coefficients as an array of const short ints (length automatically detected)
+         * \param _coefficients Array of the coefficients (const short) scaled up by 2^bitshift
+         * \param bitshift Scaling factor of the coefficients as power of 2: 2^bitshift
          **/
         template <unsigned nTaps> Fir1fixed(const short int (&_coefficients)[nTaps],
 					    unsigned bitshift) :
@@ -47,7 +55,7 @@ public:
 		buffer(new short int[nTaps]),  
 		taps(nTaps),
 		numberOfBitsToShift(bitshift) {
-			for(unsigned i = 0;i<nTaps;i++) {
+			for(unsigned i = 0; i < nTaps; i++) {
 				coefficients[i] = _coefficients[i];
 				buffer[i] = 0;
 			}
@@ -57,16 +65,22 @@ public:
 	 * Coefficients as a text file (for example from MATLAB).
 	 * The number of taps is automatically detected
 	 * when the taps are kept zero.
+         * \param coeffFile File containing the coefficients
+         * \param bitshift Scaling factor of the coefficients as power of 2: 2^bitshift
+         * \param number_of_taps Number of taps (= number of coefficients)
          **/
 	Fir1fixed(const char* coeffFile,
 		  unsigned  bitshift,
 		  unsigned number_of_taps = 0);
 
-	// destructor
+	/**
+         * Frees the buffer and coefficients
+         **/
 	~Fir1fixed();
 
 	/**
          * The actual filter function. Sample by sample.
+         * \param input The input sample
          **/
 	short int filter(short int input);
 
