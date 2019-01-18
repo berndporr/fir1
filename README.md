@@ -114,10 +114,12 @@ Again, for fixed point "h" needs to be scaled.
 ```
 Fir1 fir("h.dat");
 ```
-or import the coefficients as a floating point array (double).
+or import the coefficients as a const double array:
 ```
-Fir1 fir(coefficients,number_of_coefficients)
+Fir1 fir(coefficients)
 ```
+there is also an option to import a non-const array (for example
+generated with the ifft).
 
 #### C++ integer FIR filter:
 ```
