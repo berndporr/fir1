@@ -39,7 +39,7 @@ public:
          * the number of taps is identical to the length of the array.
          * \param _coefficients A const double array with the impulse response.
          **/
-	template <int nTaps> Fir1(const double (&_coefficients)[nTaps]) :
+	template <unsigned nTaps> Fir1(const double (&_coefficients)[nTaps]) :
 	coefficients(new double[nTaps]),
 		buffer(new double[nTaps]()),
 		taps(nTaps) {

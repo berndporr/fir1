@@ -29,19 +29,35 @@ THE SOFTWARE.
 #include <cmath>
 #include <complex>
 
-class Fir1fixed
-{
+class Fir1fixed {
 public:
-	// coefficients as floating point
-	// if the taps are left zero the program counts
-	// the number of coefficients by itself.
+        /**
+         * Coefficients as an array of short ints
+         **/
 	Fir1fixed(short int *coefficients, 
 		  unsigned bitshift,
 		  unsigned number_of_taps);
 
-	// coefficients as a text file (for example from MATLAB)
-	// The number of taps is automatically detected
-	// when the taps are kept zero
+	/**
+         * Coefficients as an array of const short ints (length automatically detected)
+         **/
+        template <unsigned nTaps> Fir1fixed(const short int (&_coefficients)[nTaps],
+					    unsigned bitshift) :
+		coefficients(new short int[nTaps]),
+		buffer(new short int[nTaps]),  
+		taps(nTaps),
+		numberOfBitsToShift(bitshift) {
+			for(unsigned i = 0;i<nTaps;i++) {
+				coefficients[i] = _coefficients[i];
+				buffer[i] = 0;
+			}
+		}
+
+	/**
+	 * Coefficients as a text file (for example from MATLAB).
+	 * The number of taps is automatically detected
+	 * when the taps are kept zero.
+         **/
 	Fir1fixed(const char* coeffFile,
 		  unsigned  bitshift,
 		  unsigned number_of_taps = 0);
@@ -49,13 +65,19 @@ public:
 	// destructor
 	~Fir1fixed();
 
-	// the actual filter function
+	/**
+         * The actual filter function. Sample by sample.
+         **/
 	short int filter(short int input);
 
-	// reset the buffer
+	/** 
+         * Resets the buffer
+         **/
 	void reset();
 
-	// returns the number of taps
+	/**
+         * Returns the number of taps
+         **/
 	unsigned getTaps() {return taps;};
 	
 private:
