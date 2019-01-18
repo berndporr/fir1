@@ -61,7 +61,8 @@ public:
 private:
 	short int        *coefficients;
 	short int        *buffer;
-	unsigned         taps, offset;
+	unsigned         taps;
+	unsigned         offset = 0;
 	unsigned         numberOfBitsToShift;
 };
 

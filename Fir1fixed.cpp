@@ -28,23 +28,22 @@ THE SOFTWARE.
 #include <stdlib.h>
 #include <assert.h>
 
-Fir1fixed::Fir1fixed(short int *coefficients,
+Fir1fixed::Fir1fixed(short int *_coefficients,
 		     unsigned bitshift,
 		     unsigned number_of_taps) :
-	coefficients(coefficients),
-	// addition of brackets should mean the array is 
-	// value-initialised to be all zeros
+	coefficients(new short int[number_of_taps]),
 	buffer(new short int[number_of_taps]()),  
 	taps(number_of_taps),
-	offset(0),
-	numberOfBitsToShift(bitshift)
-{}
+	numberOfBitsToShift(bitshift) {
+	for(unsigned i = 0;i<number_of_taps;i++) {
+		coefficients[i] = _coefficients[i];
+	}
+}
 
 // one coefficient per line
 Fir1fixed::Fir1fixed(const char* coeffFile, 
 		     unsigned bitshift,
 		     unsigned number_of_taps) :
-	offset(0),
 	taps(number_of_taps),
 	numberOfBitsToShift(bitshift)
 {
