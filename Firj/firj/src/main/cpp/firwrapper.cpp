@@ -1,9 +1,9 @@
 #include <jni.h>
 #include <string>
 
-#include <string.h>
-#include <stdlib.h>
-#include <assert.h>
+#include <cstring>
+#include <cstdlib>
+#include <cassert>
 #include <stdexcept>
 
 #include "../../../../../Fir1.h"
@@ -12,7 +12,7 @@ extern "C" {
 
 jlong
 Java_uk_me_berndporr_firj_Fir1_getInstance(JNIEnv *env,
-                                           jclass clazz,
+                                           jclass,
                                            jdoubleArray coeffArray) {
 
     double *coeffValues = env->GetDoubleArrayElements(coeffArray, 0);
@@ -28,17 +28,26 @@ Java_uk_me_berndporr_firj_Fir1_getInstance(JNIEnv *env,
 
 jlong
 Java_uk_me_berndporr_firj_Fir1_getInstanceLMS(JNIEnv *env,
-                                              jclass clazz,
-                                              jdouble nTaps) {
+                                              jclass,
+                                              jint nTaps) {
 
-    Fir1 *fir = new Fir1(nTaps);
+    Fir1 *fir = new Fir1((unsigned)nTaps);
     return (jlong) fir;
 }
 
 
+jint Java_uk_me_berndporr_firj_Fir1_getTaps(JNIEnv *,
+                                            jclass,
+                                            jlong instance) {
+    Fir1 *fir = (Fir1 *) instance;
+    if (fir == NULL) return 0;
+    return (jint)(fir->getTaps());
+}
+
+
 jdouble
-Java_uk_me_berndporr_firj_Fir1_filter(JNIEnv *env,
-                                      jclass clazz,
+Java_uk_me_berndporr_firj_Fir1_filter(JNIEnv *,
+                                      jclass,
                                       jlong instance,
                                       jdouble value) {
     Fir1 *fir = (Fir1 *) instance;
@@ -48,8 +57,8 @@ Java_uk_me_berndporr_firj_Fir1_filter(JNIEnv *env,
 
 
 void
-Java_uk_me_berndporr_firj_Fir1_lmsUpdate(JNIEnv *env,
-                                         jclass clazz,
+Java_uk_me_berndporr_firj_Fir1_lmsUpdate(JNIEnv *,
+                                         jclass,
                                          jlong instance,
                                          jdouble error) {
     Fir1 *fir = (Fir1 *) instance;
@@ -58,8 +67,8 @@ Java_uk_me_berndporr_firj_Fir1_lmsUpdate(JNIEnv *env,
 
 
 void
-Java_uk_me_berndporr_firj_Fir1_setLearningRate(JNIEnv *env,
-                                               jclass clazz,
+Java_uk_me_berndporr_firj_Fir1_setLearningRate(JNIEnv *,
+                                               jclass,
                                                jlong instance,
                                                jdouble mu) {
     Fir1 *fir = (Fir1 *) instance;
@@ -68,16 +77,16 @@ Java_uk_me_berndporr_firj_Fir1_setLearningRate(JNIEnv *env,
 
 
 jdouble
-Java_uk_me_berndporr_firj_Fir1_getTapInputPower(JNIEnv *env,
-                                                jclass clazz,
+Java_uk_me_berndporr_firj_Fir1_getTapInputPower(JNIEnv *,
+                                                jclass,
                                                 jlong instance) {
     Fir1 *fir = (Fir1 *) instance;
     return fir->getTapInputPower();
 }
 
 
-void Java_uk_me_berndporr_firj_Fir1_releaseInstance(JNIEnv *env,
-                                                    jclass clazz,
+void Java_uk_me_berndporr_firj_Fir1_releaseInstance(JNIEnv *,
+                                                    jclass,
                                                     jlong instance) {
     Fir1 *fir = (Fir1 *) instance;
     if (fir == NULL) return;

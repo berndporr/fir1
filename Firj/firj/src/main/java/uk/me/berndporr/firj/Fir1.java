@@ -27,6 +27,12 @@ public class Fir1 {
     }
 
     /**
+     * Gets the number of taps
+     * @return Number of taps
+     */
+    public int getTaps() {return getTaps(instance);}
+
+    /**
      * Realtime / causal filter operation: one sample in and
      * one sample out
      * @param v: input value
@@ -47,7 +53,7 @@ public class Fir1 {
     /**
      * Sets the learning rate which defines how strong
      * the error influences the weights
-     * @param mu
+     * @param mu learning rate
      */
     public void setLearningRate(double mu) {
         setLearningRate(instance,mu);
@@ -55,7 +61,7 @@ public class Fir1 {
 
     /**
      * Gets the tap input power to normalised LMS
-     * @return
+     * @return tap input power
      */
     public double getTapInputPower() {
         return getTapInputPower(instance);
@@ -72,6 +78,7 @@ public class Fir1 {
 
     private static native long getInstance(double[] coefficients);
     private static native long getInstanceLMS(int numberOfTaps);
+    private static native int getTaps(long instance);
     private static native double filter(long instance, double v);
     private static native void releaseInstance(long instance);
     private static native void lmsUpdate(long instance, double error);

@@ -50,7 +50,9 @@ public class InstrumentedTest {
 
     @Test
     public void lmsTest() {
-        Fir1 fir = new Fir1(10);
+        final int nTaps = 10;
+        Fir1 fir = new Fir1(nTaps);
+        assertEquals(nTaps,fir.getTaps());
         double mu = 0.1;
         fir.setLearningRate(mu);
         double v = 0;
