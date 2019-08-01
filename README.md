@@ -71,7 +71,7 @@ Windows / Linux / Mac
 
 #### Installation from source
 
-Windows / Linux / Mac
+Windows / Linux / Mac: make sure that you have swig and a C++ compiler installed. Then type:
 ```
     python3 setup.py install
 ```
