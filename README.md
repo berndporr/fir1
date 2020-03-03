@@ -12,6 +12,37 @@ square (NLMS) algorithm.
 
 ## Installation
 
+### Ubuntu packages for xenial and bionic
+
+Add this repository to your package manager:
+```
+sudo add-apt-repository ppa:berndporr/usbdux
+sudo apt-get update
+sudo apt install fir1
+sudo apt install fir1-dev
+```
+This adds `fir1-dev` and `fir1` to your package list.
+The demo files are in `/usr/share/doc/fir1-dev`. Copy them into a working
+directory, type `gunzip *.gz`, `cmake .` and `make`.
+
+### MacOS packages (homebrew)
+
+Make sure you have the homebrew package manager installed: https://brew.sh/
+
+Add the homebrew tap:
+
+```
+brew tap berndporr/berndporr
+```
+
+and then install the fir filter package with:
+
+```
+brew install fir
+```
+
+
+
 ### Linux / Unix / MACOSX: compilation from source
 
 The build system is `cmake`. Install the library with
@@ -25,19 +56,6 @@ sudo ldconfig
 or for debugging run cmake with:
 ```cmake -DCMAKE_BUILD_TYPE="Debug" .```
 By default optimised release libraries are generated.
-
-### Ubuntu packages for xenial and bionic
-
-Add this repository to your package manager:
-```
-sudo add-apt-repository ppa:berndporr/usbdux
-sudo apt-get update
-sudo apt install fir1
-sudo apt install fir1-dev
-```
-This adds `fir1-dev` and `fir1` to your package list.
-The demo files are in `/usr/share/doc/fir1-dev`. Copy them into a working
-directory, type `gunzip *.gz`, `cmake .` and `make`.
 
 ### Windows
 
