@@ -32,7 +32,7 @@ Make sure you have the homebrew package manager installed: https://brew.sh/
 Add the homebrew tap:
 
 ```
-brew tap berndporr/berndporr
+brew tap berndporr/dsp
 ```
 
 and then install the fir filter package with:
