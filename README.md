@@ -16,7 +16,7 @@ square (NLMS) algorithm.
 
 Add this repository to your package manager:
 ```
-sudo add-apt-repository ppa:berndporr/usbdux
+sudo add-apt-repository ppa:berndporr/dsp
 sudo apt-get update
 sudo apt install fir1
 sudo apt install fir1-dev
