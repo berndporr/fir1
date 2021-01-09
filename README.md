@@ -97,6 +97,20 @@ Windows / Linux / Mac: make sure that you have swig and a C++ compiler installed
 
 ## How to use it
 
+### cmake
+
+Add to your `CMakeLists.txt` either
+
+```
+target_link_libraries(myexecutable fir)
+```
+for the dynamic library or
+
+```
+target_link_libraries(myexecutable fir_static)
+```
+for the statically linked library.
+
 ### Generating the FIR filter coefficients
 
 Set the coefficients either with a C floating point array or
