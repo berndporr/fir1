@@ -82,13 +82,13 @@ public:
          * and returns one sample.
          * \param input The input sample.
          **/
-	inline double filter(double input) {
+	template <typename Sample> inline Sample filter(Sample input) {
 		double *coeff     = coefficients;
 		const double *coeff_end = coefficients + taps;
 		
 		double *buf_val = buffer + offset;
 		
-		*buf_val = input;
+		*buf_val = static_cast<Sample>(input);
 		double output_ = 0;
 		
 		while(buf_val >= buffer)
@@ -102,7 +102,7 @@ public:
 		if(++offset >= taps)
 			offset = 0;
 		
-		return output_;
+		return static_cast<Sample>(output_);
 	}
 
 
@@ -112,7 +112,7 @@ public:
 	 * w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
          * \param error Is the term error(n), the error which adjusts the FIR conefficients.
          **/
-	inline void lms_update(double error) {
+	template <typename Sample> inline void lms_update(Sample error) {
 		double *coeff     = coefficients;
 		const double *coeff_end = coefficients + taps;
 	
