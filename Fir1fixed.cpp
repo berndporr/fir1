@@ -97,30 +97,6 @@ Fir1fixed::~Fir1fixed()
   delete[] coefficients;
 }
 
-short int Fir1fixed::filter(short int input)
-{
-	short int *coeff     = coefficients;
-	short int *coeff_end = coefficients + taps;
-
-	short int *buf_val = buffer + offset;
-
-	*buf_val = input;
-	int output_ = 0;
-	
-	while(buf_val >= buffer)
-		output_ += *buf_val-- * *coeff++;
-	
-	buf_val = buffer + taps-1;
-	
-	while(coeff < coeff_end)
-		output_ += *buf_val-- * *coeff++;
-	
-	if(++offset >= taps)
-		offset = 0;
-	
-	return output_ >> numberOfBitsToShift;
-}
-
 void Fir1fixed::reset()
 {
 	memset(buffer, 0, sizeof(short int)*taps);

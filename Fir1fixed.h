@@ -73,16 +73,35 @@ public:
 		  unsigned  bitshift,
 		  unsigned number_of_taps = 0);
 
+
+	template <typename Sample> inline Sample filter(Sample input) {
+		short int *coeff     = coefficients;
+		short int *coeff_end = coefficients + taps;
+		
+		short int *buf_val = buffer + offset;
+		
+		*buf_val = input;
+		int output_ = 0;
+		
+		while(buf_val >= buffer)
+			output_ += *buf_val-- * *coeff++;
+		
+		buf_val = buffer + taps-1;
+		
+		while(coeff < coeff_end)
+			output_ += *buf_val-- * *coeff++;
+		
+		if(++offset >= taps)
+			offset = 0;
+		
+		return static_cast<Sample> (output_ >> numberOfBitsToShift);
+	}
+
+	
 	/**
          * Frees the buffer and coefficients
          **/
 	~Fir1fixed();
-
-	/**
-         * The actual filter function. Sample by sample.
-         * \param input The input sample
-         **/
-	short int filter(short int input);
 
 	/** 
          * Resets the buffer
