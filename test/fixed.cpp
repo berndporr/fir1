@@ -13,7 +13,7 @@ int main (int,char**) {
         const short int c[] = {1*s,3*s,2*s,-5*s,8*s,-8*s,7*s,9*s};
         Fir1fixed fir(c,b);
         int acc = 0;
-        for(int i = 0;i < 20;i++) {
+        for(int i = 0;i < 16;i++) {
 		int v = 0;
 		if ((i == 1) || (i > 10)) {
 			v = 1;
@@ -23,7 +23,7 @@ int main (int,char**) {
 		v = fir.filter(v);
 		// now let's check if the filter has done the right ops
 		// the delta pulse should reproduce the impulse respnse
-		if ( (i < 9) && (i > 0) ) {
+		if ( (i < 8) && (i > 0) ) {
 			assert_print(
 				(c[i-1] >> b) == v,
 				"Impulse response calc mismatch.");
