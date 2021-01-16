@@ -25,14 +25,14 @@ int main (int,char**) {
 		if ( (i < 9) && (i > 0) ) {
 			assert_print(
 				round(c[i-1]) == round(v),
-				"Step response calc mismatch (in=1)");
+				"Impulse response calc mismatch.");
 		}
 		// and the step response should accumulate it
 		if (i > 10) {
 			acc = acc + c[i - 11];
 			assert_print(
 				round(v) == round(acc),
-				"Step response calc mismatch (in=0)");
+				"Step response calc mismatch.");
 		}
         }
 }
