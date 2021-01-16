@@ -1,14 +1,21 @@
 cmake_minimum_required(VERSION 3.1.0)
+
+project(fir VERSION 1.5.0 LANGUAGES CXX)
+
 set (CMAKE_CXX_STANDARD 11)
-include(GNUInstallDirs)
+
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-	set(CMAKE_BUILD_TYPE "Release")
+	set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 endif()
 
-project(fir VERSION 1.5.0 LANGUAGES CXX)
+include(GNUInstallDirs)
 add_subdirectory(demo)
+
+cmake_policy(SET CMP0048 NEW) # set VERSION in project()
+cmake_policy(SET CMP0042 NEW) # enable MACOSX_RPATH by default
+
 
 set(LIBSRC
   Fir1.cpp
