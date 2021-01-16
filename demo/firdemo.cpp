@@ -24,8 +24,8 @@ int main (int,char**)
 	{
 		float a=0;
 		if (i==10) a = 1;
-		float b = fir.filter(a);
-		fprintf(fimpulse,"%f\n",b);
+		double b = fir.filter(a);
+		fprintf(fimpulse,"%lf\n",b);
 	}
 	fclose(fimpulse);
 	fprintf(stderr,"Written the impulse response to 'impulse.dat'\n");

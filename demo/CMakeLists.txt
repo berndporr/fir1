@@ -5,6 +5,10 @@ project(FIRdemo)
 set (CMAKE_CXX_STANDARD 11)
 include(GNUInstallDirs)
 
+if (WIN32)
+	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
 add_executable (firdemo firdemo.cpp)
 target_link_libraries(firdemo fir_static)
 target_include_directories(firdemo PRIVATE ..)

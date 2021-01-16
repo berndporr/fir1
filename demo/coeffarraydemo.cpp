@@ -33,8 +33,8 @@ int main (int,char**)
 	FILE *foutput = fopen("ecg_filtered.dat","wt");
 	for(int i=0;i<10000;i++) 
 	{
-		float a;
-		if (fscanf(finput,"%f\n",&a)<1) break;
+		double a;
+		if (fscanf(finput,"%lf\n",&a)<1) break;
 		a = fir.filter(a);
 		fprintf(foutput,"%f\n",a);
 	}
