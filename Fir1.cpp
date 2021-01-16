@@ -102,66 +102,6 @@ Fir1::~Fir1()
 }
 
 
-void Fir1::lms_update(double error)
-{
-	double *coeff     = coefficients;
-	const double *coeff_end = coefficients + taps;
-	
-	double *buf_val = buffer + offset;
-	
-	while(buf_val >= buffer) {
-		*coeff++ += *buf_val-- * error * mu;
-	}
-	
-	buf_val = buffer + taps-1;
-	
-	while(coeff < coeff_end) {
-		*coeff++ += *buf_val-- * error * mu;
-	}
-}
-
-
-
-double Fir1::getTapInputPower()
-{
-	double *buf_val = buffer;
-	
-	double p = 0;
-	
-	for(unsigned int i = 0; i < taps; i++) {
-		p += (*buf_val) * (*buf_val);
-		buf_val++;
-	}
-	
-	return p;
-}
-
-
-
-double Fir1::filter(double input)
-{
-	double *coeff     = coefficients;
-	const double *coeff_end = coefficients + taps;
-
-	double *buf_val = buffer + offset;
-
-	*buf_val = input;
-	double output_ = 0;
-	
-	while(buf_val >= buffer)
-		output_ += *buf_val-- * *coeff++;
-	
-	buf_val = buffer + taps-1;
-	
-	while(coeff < coeff_end)
-		output_ += *buf_val-- * *coeff++;
-	
-	if(++offset >= taps)
-		offset = 0;
-	
-	return output_;
-}
-
 void Fir1::reset()
 {
 	memset(buffer, 0, sizeof(double)*taps);

@@ -40,7 +40,7 @@ public:
          * \param _coefficients A const double array with the impulse response.
          **/
 	template <unsigned nTaps> Fir1(const double (&_coefficients)[nTaps]) :
-	coefficients(new double[nTaps]),
+		coefficients(new double[nTaps]),
 		buffer(new double[nTaps]()),
 		taps(nTaps) {
 		for(int i=0;i<nTaps;i++) {
@@ -76,12 +76,35 @@ public:
          **/
 	~Fir1();
 
+	
 	/**
          * The actual filter function operation: it receives one sample
          * and returns one sample.
          * \param input The input sample.
          **/
-	double filter(double input);
+	inline double filter(double input) {
+		double *coeff     = coefficients;
+		const double *coeff_end = coefficients + taps;
+		
+		double *buf_val = buffer + offset;
+		
+		*buf_val = input;
+		double output_ = 0;
+		
+		while(buf_val >= buffer)
+			output_ += *buf_val-- * *coeff++;
+		
+		buf_val = buffer + taps-1;
+		
+		while(coeff < coeff_end)
+			output_ += *buf_val-- * *coeff++;
+		
+		if(++offset >= taps)
+			offset = 0;
+		
+		return output_;
+	}
+
 
 	/**
          * LMS adaptive filter weight update:
@@ -89,7 +112,22 @@ public:
 	 * w_k(n+1) = w_k(n) + learning_rate * buffer_k(n) * error(n)
          * \param error Is the term error(n), the error which adjusts the FIR conefficients.
          **/
-	void lms_update(double error);
+	inline void lms_update(double error) {
+		double *coeff     = coefficients;
+		const double *coeff_end = coefficients + taps;
+	
+		double *buf_val = buffer + offset;
+		
+		while(buf_val >= buffer) {
+			*coeff++ += *buf_val-- * error * mu;
+		}
+		
+		buf_val = buffer + taps-1;
+		
+		while(coeff < coeff_end) {
+			*coeff++ += *buf_val-- * error * mu;
+		}
+	}
 
 	/**
          * Setting the learning rate for the adaptive filter.
@@ -122,7 +160,18 @@ public:
 	 * sum_k buffer[k]^2
 	 * which is needed to implement a normalised LMS algorithm.
          **/
-	double getTapInputPower();
+	inline double getTapInputPower() {
+		double *buf_val = buffer;
+		
+		double p = 0;
+		
+		for(unsigned int i = 0; i < taps; i++) {
+			p += (*buf_val) * (*buf_val);
+			buf_val++;
+		}
+	
+		return p;
+	}
 
 private:
 	double        *coefficients;

@@ -16,7 +16,7 @@ def read(fname):
 if platform == "linux" or platform == "linux2" or platform == "darwin":
 	fir1_module = Extension('_fir1',
 				sources=['fir1.i','Fir1.cpp'],
-				extra_compile_args=['-std=c++11'],
+				extra_compile_args=['-std=c++11','-O3'],
                                 swig_opts=['-c++','-py3'],
 			        include_dirs=[numpy.get_include()],
 				)
@@ -30,7 +30,7 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.4.1.0',
+       version = '1.5.0.0',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",

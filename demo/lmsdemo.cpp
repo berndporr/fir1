@@ -7,7 +7,7 @@
 // the filter.
 
 // This is the only include you need
-#include "Fir1.h"
+#include <Fir1.h>
 
 #define _USE_MATH_DEFINES
 #include <stdio.h>
