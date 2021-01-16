@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013-2019 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2020 Graeme Hattan & Bernd Porr */
 
 #ifndef FIR1FIXED_H
 #define FIR1FIXED_H
@@ -30,7 +30,7 @@ THE SOFTWARE.
 #include <complex>
 
 /**
- * Fixed point FIR filter with short int coefficients and data processed as short int.
+ * Fixed point FIR filter with short int coefficients and data processed as int.
  **/
 class Fir1fixed {
 public:
@@ -52,7 +52,7 @@ public:
         template <unsigned nTaps> Fir1fixed(const short int (&_coefficients)[nTaps],
 					    unsigned bitshift) :
 		coefficients(new short int[nTaps]),
-		buffer(new short int[nTaps]),  
+		buffer(new int[nTaps]),  
 		taps(nTaps),
 		numberOfBitsToShift(bitshift) {
 			for(unsigned i = 0; i < nTaps; i++) {
@@ -73,14 +73,20 @@ public:
 		  unsigned  bitshift,
 		  unsigned number_of_taps = 0);
 
-
+	/**
+	 * The actual filtering operation. Takes one sample and returns
+	 * the filtred one with the same type. The input type is usually
+	 * short int but can be also int or char if special care it taken against 
+	 * overflows.
+	 * \param input is the input sample of any integer type (int,short,char)
+	 **/
 	template <typename Sample> inline Sample filter(Sample input) {
 		short int *coeff     = coefficients;
 		short int *coeff_end = coefficients + taps;
 		
-		short int *buf_val = buffer + offset;
+		int *buf_val = buffer + offset;
 		
-		*buf_val = input;
+		*buf_val = static_cast<Sample>(input);
 		int output_ = 0;
 		
 		while(buf_val >= buffer)
@@ -94,7 +100,7 @@ public:
 		if(++offset >= taps)
 			offset = 0;
 		
-		return static_cast<Sample> (output_ >> numberOfBitsToShift);
+		return static_cast<Sample>(output_ >> numberOfBitsToShift);
 	}
 
 	
@@ -115,7 +121,7 @@ public:
 	
 private:
 	short int        *coefficients;
-	short int        *buffer;
+	int              *buffer;
 	unsigned         taps;
 	unsigned         offset = 0;
 	unsigned         numberOfBitsToShift;

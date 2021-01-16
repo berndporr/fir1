@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013-2019 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2020 Graeme Hattan & Bernd Porr */
 
 #include "Fir1fixed.h"
 
@@ -32,7 +32,7 @@ Fir1fixed::Fir1fixed(short int *_coefficients,
 		     unsigned bitshift,
 		     unsigned number_of_taps) :
 	coefficients(new short int[number_of_taps]),
-	buffer(new short int[number_of_taps]()),  
+	buffer(new int[number_of_taps]()),  
 	taps(number_of_taps),
 	numberOfBitsToShift(bitshift) {
 	for(unsigned i = 0;i<number_of_taps;i++) {
@@ -68,7 +68,7 @@ Fir1fixed::Fir1fixed(const char* coeffFile,
 
 	if (taps < 1) throw std::invalid_argument("No data in the file.");
 	
-	buffer = new short int[taps];
+	buffer = new int[taps];
 	coefficients = new short int[taps];
 
 	assert( buffer != NULL );
@@ -99,6 +99,6 @@ Fir1fixed::~Fir1fixed()
 
 void Fir1fixed::reset()
 {
-	memset(buffer, 0, sizeof(short int)*taps);
+	memset(buffer, 0, sizeof(int)*taps);
 	offset = 0;
 }
