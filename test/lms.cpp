@@ -1,6 +1,9 @@
 #include "Fir1.h"
 #include "assert_print.h"
-#include "math.h"
+
+#define _USE_MATH_DEFINES
+
+#include <math.h>
 
 #include <stdio.h>
 
