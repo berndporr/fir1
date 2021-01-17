@@ -12,8 +12,6 @@ import static org.junit.Assert.*;
 
 /**
  * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
 public class InstrumentedTest {
@@ -45,30 +43,6 @@ public class InstrumentedTest {
             }
             Log.d(TAG,"Fir1: t="+i+",v="+v);
         }
-        fir.release();
-    }
-
-    @Test
-    public void lmsTest() {
-        final int nTaps = 10;
-        Fir1 fir = new Fir1(nTaps);
-        assertEquals(nTaps,fir.getTaps());
-        double mu = 0.1;
-        fir.setLearningRate(mu);
-        double v = 0;
-        for(int i = 0;i < 10;i++) {
-            double e = 0;
-            if (i < 5) {
-                e = 1.0;
-            }
-            if (i > 5) {
-                e = -1.0;
-            }
-            fir.lmsUpdate(e);
-            v = fir.filter(1.0);
-            Log.d(TAG,"Fir1: t="+i+",v="+v);
-        }
-        assertTrue(Math.round(v) < 1E-10);
         fir.release();
     }
 

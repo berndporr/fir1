@@ -16,7 +16,7 @@ Java_uk_me_berndporr_firj_Fir1_getInstance(JNIEnv *env,
                                            jdoubleArray coeffArray) {
 
     double *coeffValues = env->GetDoubleArrayElements(coeffArray, 0);
-    unsigned nTaps = (unsigned) env->GetArrayLength(coeffArray);
+    auto nTaps = (unsigned) env->GetArrayLength(coeffArray);
 
     Fir1 *fir = new Fir1(coeffValues, nTaps);
 
@@ -40,7 +40,7 @@ jint Java_uk_me_berndporr_firj_Fir1_getTaps(JNIEnv *,
                                             jclass,
                                             jlong instance) {
     Fir1 *fir = (Fir1 *) instance;
-    if (fir == NULL) return 0;
+    if (fir == nullptr) return 0;
     return (jint)(fir->getTaps());
 }
 
@@ -51,7 +51,7 @@ Java_uk_me_berndporr_firj_Fir1_filter(JNIEnv *,
                                       jlong instance,
                                       jdouble value) {
     Fir1 *fir = (Fir1 *) instance;
-    if (fir == NULL) return 0;
+    if (fir == nullptr) return 0;
     return fir->filter(value);
 }
 
@@ -89,7 +89,7 @@ void Java_uk_me_berndporr_firj_Fir1_releaseInstance(JNIEnv *,
                                                     jclass,
                                                     jlong instance) {
     Fir1 *fir = (Fir1 *) instance;
-    if (fir == NULL) return;
+    if (fir == nullptr) return;
     delete fir;
 }
 
