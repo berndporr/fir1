@@ -80,12 +80,14 @@ for an instructional example.
 
 ### Python
 
-#### Pre-compiled package
+#### Installation from the python package index (PyPi)
 
 Windows / Linux / Mac
 ```
     pip3 install fir1
 ```
+under Windows it might be just `pip` for python3.
+
 
 #### Installation from source
 
@@ -110,6 +112,8 @@ for the dynamic library or
 target_link_libraries(myexecutable fir_static)
 ```
 for the statically linked library.
+
+You can also use `find_package(fir)`.
 
 ### Generating the FIR filter coefficients
 
@@ -279,9 +283,10 @@ the fir1 python module which in turn calls internally the C++ functions.
 
 
 ## Unit tests
-The JAVA wrapper contains unit tests for both the standard
-FIR filter and the LMS filter. These test both the wrapper
-and the underlying C++ code.
+Under C++ just run `make test` or `ctest`.
+
+The JAVA wrapper contains an instrumented test which you can run on
+your Android device.
 
 
 ## Credits
