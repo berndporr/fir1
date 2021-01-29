@@ -19,6 +19,12 @@ cmake_policy(SET CMP0042 NEW) # enable MACOSX_RPATH by default
 
 enable_testing()
 
+if (MSVC)
+  add_compile_options(/W4)
+else()
+  add_compile_options(-Wall -Wconversion -Wextra -pedantic)
+endif()
+
 set(LIBSRC
   Fir1.cpp
   Fir1fixed.cpp

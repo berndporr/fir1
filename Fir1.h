@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013-2018 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2020 Graeme Hattan & Bernd Porr */
 
 #ifndef FIR1_H
 #define FIR1_H
@@ -43,7 +43,7 @@ public:
 		coefficients(new double[nTaps]),
 		buffer(new double[nTaps]()),
 		taps(nTaps) {
-		for(int i=0;i<nTaps;i++) {
+		for(unsigned i=0;i<nTaps;i++) {
 			coefficients[i] = _coefficients[i];
 			buffer[i] = 0;
 		}
@@ -165,7 +165,7 @@ public:
 		
 		double p = 0;
 		
-		for(unsigned int i = 0; i < taps; i++) {
+		for(unsigned i = 0; i < taps; i++) {
 			p += (*buf_val) * (*buf_val);
 			buf_val++;
 		}
