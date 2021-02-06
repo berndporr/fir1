@@ -78,6 +78,9 @@ or debug binary. This generates an Android aar which you
 import into your project. See the `InstrumentedTest.java`
 for an instructional example.
 
+The pre-compiled libraries are here:
+```Firj/firj/build/outputs/aar/firj-*.aar```
+
 ### Python
 
 #### Installation from the python package index (PyPi)
