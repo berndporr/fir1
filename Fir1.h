@@ -26,6 +26,7 @@ THE SOFTWARE.
 #define FIR1_H
 
 #include <stdio.h>
+#include <vector>
 
 /**
  * Finite impulse response filter. The precision is double.
@@ -47,6 +48,14 @@ public:
 			coefficients[i] = _coefficients[i];
 			buffer[i] = 0;
 		}
+	}
+
+	/**
+	 * Coefficients as a C++ vector
+	 * \param _coefficients is a Vector of doubles.
+	 **/
+	Fir1(std::vector<double> _coefficients) {
+		initWithVector(_coefficients);
 	}
 
 	/**
@@ -174,6 +183,8 @@ public:
 	}
 
 private:
+	void initWithVector(std::vector<double> _coefficients);
+	
 	double        *coefficients;
 	double        *buffer;
 	unsigned      taps;

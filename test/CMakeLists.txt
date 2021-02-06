@@ -19,3 +19,6 @@ add_executable (lms lms.cpp)
 target_link_libraries(lms fir_static)
 add_test(TestLms lms)
 
+add_executable (coeffread coeffread.cpp)
+target_link_libraries(coeffread fir_static)
+add_test(TestReadFile coeffread)

@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 /* (C) 2013 Graeme Hattan & Bernd Porr */
-/* (C) 2018 Bernd Porr */
+/* (C) 2018-2021 Bernd Porr */
 
 #include "Fir1.h"
 
@@ -50,48 +50,33 @@ Fir1::Fir1(unsigned number_of_taps) :
 	reset();
 }
 
+void Fir1::initWithVector(std::vector<double> _coefficients) {
+	coefficients = new double[_coefficients.size()];
+	buffer = new double[_coefficients.size()]();
+	taps = ((unsigned int)_coefficients.size());
+	for(unsigned long i=0;i<_coefficients.size();i++) {
+		coefficients[i] = _coefficients[i];
+		buffer[i] = 0;
+	}
+}	
+
 // one coefficient per line
-Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) :
-	taps(number_of_taps) {
-	buffer = NULL;
-	coefficients = NULL;
+Fir1::Fir1(const char* coeffFile, unsigned number_of_taps) {
+
+	std::vector<double> tmpCoefficients;
 
 	FILE* f=fopen(coeffFile,"rt");
-	if (!f)
-	{
-		char tmp[256];
-		sprintf(tmp,"Could not open file with coefficients: %s\n",coeffFile);
-		taps = 0;
-		throw std::invalid_argument(tmp);
+	if (!f) {
+		throw std::invalid_argument("Could not open file.");
 	}
-
-	if (taps == 0)
-	{
-		double a;
-		while (fscanf(f,"%lf\n",&a)>0) taps++;
-		rewind(f);
-	}
-
-	if (taps == 0) throw std::invalid_argument("The filter has no coefficients. nTaps = 0.");
-	
-	buffer = new double[taps];
-	coefficients = new double[taps];
-
-	assert( buffer != NULL );
-	assert( coefficients != NULL );
-
-	for(unsigned int i=0;i<taps;i++)
-	{
-		if (fscanf(f,"%lf\n",coefficients+i)<1)
-		{
-			char tmp[256];
-			sprintf(tmp,"Could not read the coefficients from %s\n",coeffFile);
-			taps = 0;
-			throw std::invalid_argument(tmp);
-		}
+	for(unsigned int i=0;(i<number_of_taps)||(number_of_taps==0);i++) {
+		double v = 0;
+		int r = fscanf(f,"%lf\n",&v);
+		if (r < 1) break;
+		tmpCoefficients.push_back(v);
 	}
 	fclose(f);
-	reset();
+	initWithVector(tmpCoefficients);
 }
 
 
