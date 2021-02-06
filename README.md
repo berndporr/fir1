@@ -155,7 +155,7 @@ or import the coefficients as a const double array:
 Fir1 fir(coefficients)
 ```
 there is also an option to import a non-const array (for example
-generated with the ifft).
+generated with the ifft) and using std::vector.
 
 #### C++ integer FIR filter:
 ```
