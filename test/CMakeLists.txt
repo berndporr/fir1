@@ -27,4 +27,7 @@ add_test(TestLms lms)
 
 add_executable (coeffread coeffread.cpp)
 target_link_libraries(coeffread fir_static)
-add_test(TestReadFile coeffread)
+add_test(
+  NAME TestReadFile
+  COMMAND coeffread
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
