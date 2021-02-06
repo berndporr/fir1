@@ -7,6 +7,12 @@ include_directories(
   ..
   )
 
+if (MSVC)
+  add_compile_options(/W4 -D_CRT_SECURE_NO_WARNINGS)
+else()
+  add_compile_options(-Wall -Wconversion -Wextra -pedantic)
+endif()
+
 add_executable (impstep impstep.cpp)
 target_link_libraries(impstep fir_static)
 add_test(TestImpulseStep impstep)

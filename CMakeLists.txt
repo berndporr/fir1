@@ -20,7 +20,7 @@ cmake_policy(SET CMP0042 NEW) # enable MACOSX_RPATH by default
 enable_testing()
 
 if (MSVC)
-  add_compile_options(/W4)
+  add_compile_options(/W4 -D_CRT_SECURE_NO_WARNINGS)
 else()
   add_compile_options(-Wall -Wconversion -Wextra -pedantic)
 endif()
@@ -54,10 +54,6 @@ if (UNIX)
   configure_file(fir.pc.in fir.pc @ONLY)
   
 endif ()
-
-if (WIN32)
-	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
-endif()
 
 add_library(fir_static
   STATIC

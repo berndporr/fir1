@@ -12,6 +12,7 @@ int main (int,char**)
 	fir.reset ();
       
 	FILE *f = fopen("coefficients.dat","rt");
+	if (!f) abort();
 	double v;
 	for(int i=0;i<30;i++) 
 	{

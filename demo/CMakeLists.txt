@@ -5,7 +5,7 @@ project(FIRdemo)
 set (CMAKE_CXX_STANDARD 11)
 include(GNUInstallDirs)
 
-if (WIN32)
+if (MSVC)
 	add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
