@@ -12,7 +12,7 @@ int main (int,char**)
 	fir.reset ();
       
 	FILE *f = fopen("coefficients.dat","rt");
-	if (!f) abort();
+	assert_print(NULL != f, "Coefficients file doesn't exist.");
 	double v;
 	for(int i=0;i<30;i++) 
 	{
@@ -20,8 +20,9 @@ int main (int,char**)
 		if (i==10) a = 1;
 		double b = fir.filter(a);
 		if (i >= 10) {
-			fscanf(f,"%lf\n",&v);
-			assert_print(v == b,"Coefficient / output mismatch.\n");
+			int r = fscanf(f,"%lf\n",&v);
+			assert_print(r > 0, "coefficients read error.");
+			assert_print(v == b,"Coefficient / output mismatch.");
 		}
 	}
 	fclose(f);
