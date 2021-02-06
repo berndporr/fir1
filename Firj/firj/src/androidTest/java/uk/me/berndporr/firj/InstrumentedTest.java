@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class InstrumentedTest {
 
-    String TAG="InstrumentedTest";
+    final String TAG="InstrumentedTest";
 
     @Test
     public void firTest() {
