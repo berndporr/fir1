@@ -92,8 +92,8 @@ public:
          * \param input The input sample.
          **/
 	inline double filter(double input) {
-		double *coeff     = coefficients;
-		const double *coeff_end = coefficients + taps;
+		const double *coeff     = coefficients;
+		const double *const coeff_end = coefficients + taps;
 		
 		double *buf_val = buffer + offset;
 		
