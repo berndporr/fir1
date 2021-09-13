@@ -22,6 +22,15 @@
     import_array();
 %}
 
+%feature("shadow") Fir1::getCoeff(double *, unsigned) const %{
+def getCoeff(*args):
+        print(args)
+        if len(args) < 2 :
+                return $action(args[0], args[0].getTaps())
+        else :
+                return $action(*args)
+%}
+
 %apply (double* IN_ARRAY1, int DIM1) {(double *coefficients, unsigned number_of_taps)};
 %apply (double* ARGOUT_ARRAY1, int DIM1) {(double *coeff_data, unsigned number_of_taps)};
 
