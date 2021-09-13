@@ -31,3 +31,7 @@ add_test(
   NAME TestReadFile
   COMMAND coeffread
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_executable (getcoeff getcoeff.cpp)
+target_link_libraries(getcoeff fir_static)
+add_test(TestGetCoeffs getcoeff)
