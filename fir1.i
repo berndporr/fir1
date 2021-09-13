@@ -22,12 +22,18 @@
     import_array();
 %}
 
+// Python only feature:
+// Calling getCoeff() without an argument returns a numpy array of the filter weights.
+// This is fine in Python, everything is very dynamic. It might be dangerous in C(++)
+
 %feature("shadow") Fir1::getCoeff(double *, unsigned) const %{
 def getCoeff(*args):
-        print(args)
         if len(args) < 2 :
+                // Only one argument given, and that is self.
+                // Set the number of taps to return from the number of weights.
                 return $action(args[0], args[0].getTaps())
         else :
+                // If any other arguments are supplied, pass them through to the C++ library.
                 return $action(*args)
 %}
 
