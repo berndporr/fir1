@@ -103,7 +103,7 @@ void Fir1::getCoeff(double* coeff_data, unsigned number_of_taps) const {
 	if (number_of_taps < taps)
 		throw new std::out_of_range("Fir1: target of getCoefficients: size mismatch");
  
-	memcpy(coeff_data, coefficients, number_of_taps * sizeof(double));
+	memcpy(coeff_data, coefficients, taps * sizeof(double));
 	if (number_of_taps > taps)
 		memset(&coeff_data[taps], 0, (number_of_taps - taps)*sizeof(double));
 }

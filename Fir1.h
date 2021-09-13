@@ -165,7 +165,7 @@ public:
 	 * the result of its training.
 	 * \param coeff_data target where coefficients are copied
 	 * \param number_of_taps number of doubles to be copied
-	 * \throws char* number_of_taps is less the actual number of taps.
+	 * \throws std::out_of_range number_of_taps is less the actual number of taps.
 	 */
 	void getCoeff(double* coeff_data, unsigned number_of_taps) const;
 
