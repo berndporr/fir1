@@ -1,10 +1,22 @@
 %module fir1
+%include exception.i
+
 %{
 	#define SWIG_FILE_WITH_INIT
 	#include "Fir1.h"
 %}
 
 %include "numpy.i"
+
+%exception {
+    try {
+        $action
+    } catch (const std::exception& e) {
+	PyErr_SetString(PyExc_RuntimeError, e.what());
+	return NULL;
+    }
+}
+
 
 %init %{
     import_array();
