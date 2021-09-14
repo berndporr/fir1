@@ -26,11 +26,19 @@
 // Calling getCoeff() without an argument returns a numpy array of the filter weights.
 // This is fine in Python, everything is very dynamic. It might be dangerous in C(++)
 
+// This pretty much replaces the functionality of getCoeffVector in the C++ library.
+// As we're using numpy, converting std::vector to a list is of little use, so...
+
+%ignore Fir1::getCoeffVector() const;
+
 %feature("shadow") Fir1::getCoeff(double *, unsigned) const %{
 def getCoeff(*args):
         if len(args) < 2 :
+                # Only one argument given, and that is self.
+                # Set the number of taps to return from the number of weights.
                 return $action(args[0], args[0].getTaps())
         else :
+                # If any other arguments are supplied, pass them through to the C++ library.
                 return $action(*args)
 %}
 
