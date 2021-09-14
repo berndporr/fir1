@@ -35,3 +35,8 @@ add_test(
 add_executable (getcoeff getcoeff.cpp)
 target_link_libraries(getcoeff fir_static)
 add_test(TestGetCoeffs getcoeff)
+
+add_executable (getcoeffvector getcoeffvector.cpp)
+target_link_libraries(getcoeffvector fir_static)
+add_test(TestGetCoeffsVector getcoeffvector)
+
