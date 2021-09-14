@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
 
-/* (C) 2013-2020 Graeme Hattan & Bernd Porr */
+/* (C) 2013-2021 Graeme Hattan & Bernd Porr */
 
 #ifndef FIR1_H
 #define FIR1_H
@@ -168,6 +168,13 @@ public:
 	 * \throws std::out_of_range number_of_taps is less the actual number of taps.
 	 */
 	void getCoeff(double* coeff_data, unsigned number_of_taps) const;
+
+	/**
+	 * Returns the coefficients as a vector
+	 **/
+	std::vector<double> getCoeffVector() const {
+		return std::vector<double>(coefficients,coefficients+taps);
+	}
 
 	/**
          * Returns the number of taps.
