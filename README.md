@@ -201,6 +201,27 @@ double b = fir.filter(a)
 ```
 b = f.filter(a)
 ```
+### Utility methods
+
+#### C++
++ `unsigned getTaps(void) const` returns the length of the FIR filter kernel.
++ `void getCoeff(double* target, unsigned length) const` copies the FIR kernel into the
+given C array of `double`s with length `length`.
+
+   If `length` exceeds the length of the filter kernel, the result is zero-padded to fill
+the given array.
+
+   If `length` is smaller than the filter kernel, a `std::out_of_range` exception is thrown.
+   
++ `std::vector<double> getCoeffVector() const` returns a copy of the filter kernel.
+
+#### Python
++ `getTaps() -> int` is bound to the C++ method.
++ `getCoeff(n : int) -> numpy.array` as per the C++ method, following the zero-padding
+and exception-throwing behaviour of the C++. The returned array will have `n` elements.
++ `getCoeff() -> numpy.array` additional to the C++ methods, this returns an numpy array
+which is a copy of the filter kernel. This is probably the default use case in Python, so:
++ `getCoeffVector` is not bound.
 
 ### Destructor
 

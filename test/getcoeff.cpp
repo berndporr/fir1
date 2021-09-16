@@ -46,7 +46,7 @@ int main (int,char**) {
         bool exception {false};
         try {
                 fir.getCoeff(&w_out[0], nTaps-1);
-        } catch (std::out_of_range& oor) {
+        } catch (std::out_of_range&) {
                 exception = true;
         }
         
