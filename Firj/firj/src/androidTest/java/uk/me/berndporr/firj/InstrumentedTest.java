@@ -1,6 +1,5 @@
 package uk.me.berndporr.firj;
 
-import android.content.Context;
 import android.util.Log;
 
 import org.junit.Test;
