@@ -63,6 +63,29 @@ reference 50Hz sine wave::
         f.lms_update(output_signal)
         y[i] = output_signal
 
+You can query the filter coefficients using getCoeff.
+This is most useful to obtain the kernel of a trained
+adaptive filter.
+
+        >>> from fir1 import Fir1
+        >>> fir = Fir1([.25, -.5, 1, -.5, .25])
+        >>> fir.getCoeff()
+        array([ 0.25, -0.5 ,  1.  , -0.5 ,  0.25])
+
+You may override the length of array to return and
+the result will be zero-padded. Specifying too small an array
+causes an exception to be raised.
+
+        >>> fir.getCoeff(8)
+        array([ 0.25, -0.5 ,  1.  , -0.5 ,  0.25,  0.  ,  0.  ,  0.  ])
+        >>> fir.getCoeff(3)
+        Traceback (most recent call last):
+        File "<stdin>", line 1, in <module>
+        File ".../fir1.py", line 97, in getCoeff
+        return _fir1.Fir1_getCoeff(self, *args)
+        RuntimeError: Fir1: target of getCoeff: too many weights to copy into target
+
+
 Both the demo file and an explanation how the LMS
 filter works can be found on the homepage of the
 project:
