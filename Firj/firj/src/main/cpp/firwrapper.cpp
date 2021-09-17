@@ -93,5 +93,14 @@ void Java_uk_me_berndporr_firj_Fir1_releaseInstance(JNIEnv *,
     delete fir;
 }
 
+jdoubleArray Java_uk_me_berndporr_firj_Fir1_getCoeff(JNIEnv * env, jclass, jlong instance) {
+    Fir1 *fir = (Fir1 *) instance;
+    jdoubleArray doubleArray = env->NewDoubleArray(fir->getTaps());
+    jdouble *doubleValues = env->GetDoubleArrayElements(doubleArray, 0);
+    fir->getCoeff(doubleValues,fir->getTaps());
+    env->ReleaseDoubleArrayElements(doubleArray, doubleValues, 0);
+    return doubleArray;
+}
+
 
 }

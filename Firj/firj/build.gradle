@@ -1,14 +1,14 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
 
 
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 29
-        versionCode 4
+        minSdkVersion 26
+        targetSdkVersion 30
+        versionCode 5
         versionName "1.6.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -34,8 +34,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    testImplementation 'junit:junit:4.13.1'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
 }

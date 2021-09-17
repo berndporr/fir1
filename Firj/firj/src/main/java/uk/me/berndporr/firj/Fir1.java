@@ -68,6 +68,12 @@ public class Fir1 {
     }
 
     /**
+     * Gets the coefficients
+     * @return A double array of the coefficients
+     */
+    public double[] getCoeff() {return getCoeff(instance); }
+
+    /**
      * Needs to be called when the filter is no longer being
      * used. This frees up the memory for both the ringbuffer
      * and the coefficients.
@@ -84,6 +90,7 @@ public class Fir1 {
     private static native void lmsUpdate(long instance, double error);
     private static native void setLearningRate(long instance, double mu);
     private static native double getTapInputPower(long instance);
+    private static native double[] getCoeff(long instance);
 
     static {
         System.loadLibrary("fir-lib");
