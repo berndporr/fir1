@@ -325,4 +325,4 @@ This library has been adapted form Graeme Hattan's original C code.
 
 Enjoy!
 
-Bernd Porr & Graeme Hattan
+Bernd Porr & Nick Bailey
