@@ -305,6 +305,12 @@ a step function.
 5. filter_ecg.py performs the filtering of an ECG in python using
 the fir1 python module which in turn calls internally the C++ functions.
 
+## C++ documentation
+
+The doxygen generated documentation can be found here:
+
+ - Online: http://berndporr.github.io/fir1/index.html
+ - PDF: https://github.com/berndporr/fir1/tree/master/docs/pdf
 
 ## Unit tests
 Under C++ just run `make test` or `ctest`.
