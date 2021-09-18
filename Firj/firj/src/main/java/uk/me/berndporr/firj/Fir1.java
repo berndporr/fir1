@@ -71,7 +71,13 @@ public class Fir1 {
      * Gets the coefficients
      * @return A double array of the coefficients
      */
-    public double[] getCoeff() {return getCoeff(instance); }
+    public double[] getCoeff() {return getCoeff(instance,getTaps(instance)); }
+
+    /**
+     * Gets the coefficients
+     * @return A double array of the coefficients
+     */
+    public double[] getCoeff(int n) {return getCoeff(instance,n); }
 
     /**
      * Needs to be called when the filter is no longer being
@@ -90,7 +96,7 @@ public class Fir1 {
     private static native void lmsUpdate(long instance, double error);
     private static native void setLearningRate(long instance, double mu);
     private static native double getTapInputPower(long instance);
-    private static native double[] getCoeff(long instance);
+    private static native double[] getCoeff(long instance, int n);
 
     static {
         System.loadLibrary("fir-lib");

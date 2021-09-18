@@ -203,8 +203,7 @@ b = f.filter(a)
 ```
 ### Utility methods
 
-In all languages you'll get these functions to reset the delay line
-or the coefficients:
+These functions are the same in C++, JAVA and Python:
 
 + `getTaps()` returns the length of the FIR filter kernel.
 + `reset()` sets all delay lines to zero.
@@ -232,7 +231,9 @@ which is a copy of the filter kernel. This is probably the default use case in P
 
 
 #### JAVA
-+ `getCoeff() -> double[]` returns a double array of the filter kernel.
++ `double[] getCoeff()` returns a double array of the filter kernel.
++ `double[] getCoeff(n : int)` as per the C++ method, following the zero-padding
+and exception-throwing behaviour of the C++. The returned array will have `n` elements.
 
 
 ### Destructor

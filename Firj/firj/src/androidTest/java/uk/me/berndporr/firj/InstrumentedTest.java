@@ -50,7 +50,7 @@ public class InstrumentedTest {
                 acc = acc + c[i - 11];
                 assertEquals(Math.round(v),Math.round(acc),delta);
             }
-            Log.d(TAG,"Fir1: t="+i+",v="+v);
+            Log.v(TAG,"Fir1: t="+i+",v="+v);
         }
         fir.release();
     }
@@ -64,6 +64,39 @@ public class InstrumentedTest {
             assertEquals(c[i],coeff[i],delta);
         }
         fir.release();
+        Log.v(TAG,"Coeff readout with default length OK.");
+    }
+
+    @Test
+    public void coeffTest2() {
+        int n = 100;
+        double[] c = randArr(n);
+        Fir1 fir = new Fir1(c);
+        double[] coeff = fir.getCoeff(n+10);
+        for(int i=0; i < fir.getTaps(); i++) {
+            assertEquals(c[i],coeff[i],delta);
+        }
+        fir.release();
+        Log.v(TAG,"Coeff readout with custom length OK.");
+    }
+
+    @Test
+    public void coeffTest3() {
+        int n = 100;
+        double[] c = randArr(n);
+        Fir1 fir = new Fir1(c);
+        boolean exceptionHasHappend = false;
+        try {
+            double[] coeff = fir.getCoeff(n/2);
+            for (int i = 0; i < fir.getTaps(); i++) {
+                assertEquals(c[i], coeff[i], delta);
+            }
+        } catch (Exception e) {
+            exceptionHasHappend = true;
+            Log.v(TAG,"Exception because of lack of space successfully triggered:",e);
+        }
+        fir.release();
+        assertTrue(exceptionHasHappend);
     }
 
 }
