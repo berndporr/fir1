@@ -221,7 +221,7 @@ the given array.
 and exception-throwing behaviour of the C++. The returned array will have `n` elements.
 + `getCoeff() -> numpy.array` additional to the C++ methods, this returns an numpy array
 which is a copy of the filter kernel. This is probably the default use case in Python, so:
-+ `getCoeffVector` is not bound.
+
 
 #### JAVA
 + `getTaps() -> int` is bound to the C++ method.
@@ -287,6 +287,7 @@ it.
 
 See the demo below which removes 50Hz from an ECG which uses a normalised 50Hz signal
 which guarantees stability by design.
+
 
 ### JAVA/Python
 
