@@ -216,11 +216,11 @@ the given array.
 + `std::vector<double> getCoeffVector() const` returns a copy of the filter kernel.
 
 #### Python
-+ `getTaps() -> int` is bound to the C++ method.
++ `getTaps() -> int` is identical to the C++ method.
 + `getCoeff(n : int) -> numpy.array` as per the C++ method, following the zero-padding
 and exception-throwing behaviour of the C++. The returned array will have `n` elements.
 + `getCoeff() -> numpy.array` additional to the C++ methods, this returns an numpy array
-which is a copy of the filter kernel. This is probably the default use case in Python, so:
+which is a copy of the filter kernel. This is probably the default use case in Python.
 
 
 #### JAVA
