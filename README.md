@@ -223,6 +223,11 @@ and exception-throwing behaviour of the C++. The returned array will have `n` el
 which is a copy of the filter kernel. This is probably the default use case in Python, so:
 + `getCoeffVector` is not bound.
 
+#### JAVA
++ `getTaps() -> int` is bound to the C++ method.
++ `getCoeff() -> double[]` returns a double array of the filter kernel.
+
+
 ### Destructor
 
 #### C++
