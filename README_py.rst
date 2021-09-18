@@ -65,7 +65,7 @@ reference 50Hz sine wave::
 
 You can query the filter coefficients using getCoeff.
 This is most useful to obtain the kernel of a trained
-adaptive filter.
+adaptive filter::
 
         >>> from fir1 import Fir1
         >>> fir = Fir1([.25, -.5, 1, -.5, .25])
@@ -74,7 +74,7 @@ adaptive filter.
 
 You may override the length of array to return and
 the result will be zero-padded. Specifying too small an array
-causes an exception to be raised.
+causes an exception to be raised::
 
         >>> fir.getCoeff(8)
         array([ 0.25, -0.5 ,  1.  , -0.5 ,  0.25,  0.  ,  0.  ,  0.  ])

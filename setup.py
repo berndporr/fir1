@@ -30,12 +30,12 @@ elif platform == "win32":
 
 						   
 setup (name = 'fir1',
-       version = '1.7.0.0',
+       version = '1.7.1.0',
        author      = "Bernd Porr",
        author_email = "mail@berndporr.me.uk",
        url = "https://github.com/berndporr/fir1",
        description = 'Efficient FIR realtime filter',
-       long_description=read('README_py'),
+       long_description=read('README_py.rst'),
        ext_modules = [fir1_module],
        py_modules = ["fir1"],
        license='MIT',
