@@ -85,14 +85,14 @@ public class Fir1 {
      * and the coefficients.
      */
     public void release() {
-        releaseInstance(instance);
+        instance = releaseInstance(instance);
     }
 
     private static native long getInstance(double[] coefficients);
     private static native long getInstanceLMS(int numberOfTaps);
     private static native int getTaps(long instance);
     private static native double filter(long instance, double v);
-    private static native void releaseInstance(long instance);
+    private static native long releaseInstance(long instance);
     private static native void lmsUpdate(long instance, double error);
     private static native void setLearningRate(long instance, double mu);
     private static native double getTapInputPower(long instance);

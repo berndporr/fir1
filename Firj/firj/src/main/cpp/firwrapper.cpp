@@ -85,12 +85,12 @@ Java_uk_me_berndporr_firj_Fir1_getTapInputPower(JNIEnv *,
 }
 
 
-void Java_uk_me_berndporr_firj_Fir1_releaseInstance(JNIEnv *,
+jlong Java_uk_me_berndporr_firj_Fir1_releaseInstance(JNIEnv *,
                                                     jclass,
                                                     jlong instance) {
     Fir1 *fir = (Fir1 *) instance;
-    if (fir == nullptr) return;
     delete fir;
+    return (jlong)nullptr;
 }
 
 jdoubleArray Java_uk_me_berndporr_firj_Fir1_getCoeff(JNIEnv * env, jclass, jlong instance, jint n) {
