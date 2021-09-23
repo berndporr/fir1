@@ -173,8 +173,16 @@ bandstop between 45 and 55 Hz:</h1>
 </div><!-- fragment --><p>double b = fir.filter(a) </p><div class="fragment"><div class="line">#### Python</div>
 </div><!-- fragment --><p>b = f.filter(a) </p><div class="fragment"><div class="line">### Utility methods</div>
 <div class="line"> </div>
+<div class="line">These functions are the same in C++, JAVA and Python:</div>
+<div class="line"> </div>
+<div class="line">+ `getTaps()` returns the length of the FIR filter kernel.</div>
+<div class="line">+ `reset()` sets all delay lines to zero.</div>
+<div class="line">+ `zeroCoeff()` sets all coefficients to zero.</div>
+<div class="line"> </div>
+<div class="line">Retreiving the coefficients/kernel from the FIR filter is different depending on the</div>
+<div class="line">language used:</div>
+<div class="line"> </div>
 <div class="line">#### C++</div>
-<div class="line">+ `unsigned getTaps(void) const` returns the length of the FIR filter kernel.</div>
 <div class="line">+ `void getCoeff(double* target, unsigned length) const` copies the FIR kernel into the</div>
 <div class="line">given C array of `double`s with length `length`.</div>
 <div class="line"> </div>
@@ -186,12 +194,17 @@ bandstop between 45 and 55 Hz:</h1>
 <div class="line">+ `std::vector&lt;double&gt; getCoeffVector() const` returns a copy of the filter kernel.</div>
 <div class="line"> </div>
 <div class="line">#### Python</div>
-<div class="line">+ `getTaps() -&gt; int` is bound to the C++ method.</div>
 <div class="line">+ `getCoeff(n : int) -&gt; numpy.array` as per the C++ method, following the zero-padding</div>
 <div class="line">and exception-throwing behaviour of the C++. The returned array will have `n` elements.</div>
 <div class="line">+ `getCoeff() -&gt; numpy.array` additional to the C++ methods, this returns an numpy array</div>
-<div class="line">which is a copy of the filter kernel. This is probably the default use case in Python, so:</div>
-<div class="line">+ `getCoeffVector` is not bound.</div>
+<div class="line">which is a copy of the filter kernel. This is probably the default use case in Python.</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">#### JAVA</div>
+<div class="line">+ `double[] getCoeff()` returns a double array of the filter kernel.</div>
+<div class="line">+ `double[] getCoeff(n : int)` as per the C++ method, following the zero-padding</div>
+<div class="line">and exception-throwing behaviour of the C++. The returned array will have `n` elements.</div>
+<div class="line"> </div>
 <div class="line"> </div>
 <div class="line">### Destructor</div>
 <div class="line"> </div>
@@ -235,19 +248,26 @@ Demos</h2>
 <li>filter_ecg.py performs the filtering of an ECG in python using the fir1 python module which in turn calls internally the C++ functions.</li>
 </ol>
 <h2><a class="anchor" id="autotoc_md12"></a>
+C++ documentation</h2>
+<p>The doxygen generated documentation can be found here:</p>
+<ul>
+<li>Online: <a href="http://berndporr.github.io/fir1/index.html">http://berndporr.github.io/fir1/index.html</a></li>
+<li>PDF: <a href="https://github.com/berndporr/fir1/tree/master/docs/pdf">https://github.com/berndporr/fir1/tree/master/docs/pdf</a></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md13"></a>
 Unit tests</h2>
 <p>Under C++ just run <code>make test</code> or <code>ctest</code>.</p>
 <p>The JAVA wrapper contains an instrumented test which you can run on your Android device.</p>
-<h2><a class="anchor" id="autotoc_md13"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Credits</h2>
 <p>This library has been adapted form Graeme Hattan's original C code.</p>
 <p>Enjoy!</p>
-<p>Bernd Porr &amp; Graeme Hattan </p>
+<p>Bernd Porr &amp; Nick Bailey </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 17 2021 09:25:51 for fir1 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 23 2021 22:45:58 for fir1 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

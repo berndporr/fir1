@@ -1,0 +1,203 @@
+\hypertarget{classFir1}{}\doxysubsection{Fir1 Class Reference}
+\label{classFir1}\index{Fir1@{Fir1}}
+
+
+{\ttfamily \#include $<$Fir1.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$unsigned n\+Taps$>$ }\\\mbox{\hyperlink{classFir1_a8164ab2294cf92979a009362682e2ecd}{Fir1}} (const double(\&\+\_\+coefficients)\mbox{[}n\+Taps\mbox{]})
+\item 
+\mbox{\hyperlink{classFir1_a31b98d0df8a4c15f8c85590a5d49ed1d}{Fir1}} (std\+::vector$<$ double $>$ \+\_\+coefficients)
+\item 
+\mbox{\hyperlink{classFir1_a507801740031cd31e91a02346e8fd6ac}{Fir1}} (double $\ast$coefficients, unsigned number\+\_\+of\+\_\+taps)
+\item 
+\mbox{\hyperlink{classFir1_a3391ecc885a06e14baf5d5ea8fb50588}{Fir1}} (const char $\ast$coeff\+File, unsigned number\+\_\+of\+\_\+taps=0)
+\item 
+\mbox{\hyperlink{classFir1_ad2296bf585406c502f2e4271e9b4427c}{Fir1}} (unsigned number\+\_\+of\+\_\+taps)
+\item 
+\mbox{\hyperlink{classFir1_a86233a005b6a50a461169ff262825970}{$\sim$\+Fir1}} ()
+\item 
+double \mbox{\hyperlink{classFir1_a98b5f6c881da9eed30cbc6908fb48158}{filter}} (double input)
+\item 
+void \mbox{\hyperlink{classFir1_ae7dd501b1f452c51944b7cd3ff0a8ede}{lms\+\_\+update}} (double error)
+\item 
+void \mbox{\hyperlink{classFir1_ae974af5d0263423334fe9ad916a666a2}{set\+Learning\+Rate}} (double \+\_\+mu)
+\item 
+double \mbox{\hyperlink{classFir1_ac96ecc1b339b541e0aeab530669bc99c}{get\+Learning\+Rate}} ()
+\item 
+void \mbox{\hyperlink{classFir1_a3516709a67439e6fa1ecd3aac42fd719}{reset}} ()
+\item 
+void \mbox{\hyperlink{classFir1_add6c80346d4fec6e9a270df55f604456}{zero\+Coeff}} ()
+\item 
+void \mbox{\hyperlink{classFir1_a5b1970b5d534d61802dfe9109fd48522}{get\+Coeff}} (double $\ast$coeff\+\_\+data, unsigned number\+\_\+of\+\_\+taps) const
+\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{classFir1_ad18c498378f7a2affaffddc1b4a238ad}{get\+Coeff\+Vector}} () const
+\item 
+unsigned \mbox{\hyperlink{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}{get\+Taps}} ()
+\item 
+double \mbox{\hyperlink{classFir1_af82d83c241370e34cfdbb61ca82f29fb}{get\+Tap\+Input\+Power}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Finite impulse response filter. The precision is double. It takes as an input a file with coefficients or an double array. 
+
+\doxysubsubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classFir1_a8164ab2294cf92979a009362682e2ecd}\label{classFir1_a8164ab2294cf92979a009362682e2ecd}} 
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$unsigned n\+Taps$>$ \\
+Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{const double(\&)}]{\+\_\+coefficients\mbox{[}n\+Taps\mbox{]} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Coefficients as a const double array. Because the array is const the number of taps is identical to the length of the array. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+coefficients} & A const double array with the impulse response. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_a31b98d0df8a4c15f8c85590a5d49ed1d}\label{classFir1_a31b98d0df8a4c15f8c85590a5d49ed1d}} 
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{std\+::vector$<$ double $>$}]{\+\_\+coefficients }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Coefficients as a C++ vector 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+coefficients} & is a Vector of doubles. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_a507801740031cd31e91a02346e8fd6ac}\label{classFir1_a507801740031cd31e91a02346e8fd6ac}} 
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{double $\ast$}]{coefficients,  }\item[{unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption})}
+
+Coefficients as a (non-\/constant-\/) double array where the length needs to be specified. 
+\begin{DoxyParams}{Parameters}
+{\em coefficients} & Coefficients as double array. \\
+\hline
+{\em number\+\_\+of\+\_\+taps} & Number of taps (needs to match the number of coefficients \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_a3391ecc885a06e14baf5d5ea8fb50588}\label{classFir1_a3391ecc885a06e14baf5d5ea8fb50588}} 
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{coeff\+File,  }\item[{unsigned}]{number\+\_\+of\+\_\+taps = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Coefficients as a text file (for example from Python) The number of taps is automatically detected when the taps are kept zero. 
+\begin{DoxyParams}{Parameters}
+{\em coeff\+File} & Patht to textfile where every line contains one coefficient \\
+\hline
+{\em number\+\_\+of\+\_\+taps} & Number of taps (0 = autodetect) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_ad2296bf585406c502f2e4271e9b4427c}\label{classFir1_ad2296bf585406c502f2e4271e9b4427c}} 
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\index{Fir1@{Fir1}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption})}
+
+Inits all coefficients and the buffer to zero This is useful for adaptive filters where we start with zero valued coefficients. \mbox{\Hypertarget{classFir1_a86233a005b6a50a461169ff262825970}\label{classFir1_a86233a005b6a50a461169ff262825970}} 
+\index{Fir1@{Fir1}!````~Fir1@{$\sim$Fir1}}
+\index{````~Fir1@{$\sim$Fir1}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{$\sim$Fir1()}{~Fir1()}}
+{\footnotesize\ttfamily Fir1\+::$\sim$\+Fir1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Releases the coefficients and buffer. 
+
+\doxysubsubsection{Member Function Documentation}
+\mbox{\Hypertarget{classFir1_a98b5f6c881da9eed30cbc6908fb48158}\label{classFir1_a98b5f6c881da9eed30cbc6908fb48158}} 
+\index{Fir1@{Fir1}!filter@{filter}}
+\index{filter@{filter}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{filter()}{filter()}}
+{\footnotesize\ttfamily double Fir1\+::filter (\begin{DoxyParamCaption}\item[{double}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The actual filter function operation\+: it receives one sample and returns one sample. 
+\begin{DoxyParams}{Parameters}
+{\em input} & The input sample. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_a5b1970b5d534d61802dfe9109fd48522}\label{classFir1_a5b1970b5d534d61802dfe9109fd48522}} 
+\index{Fir1@{Fir1}!getCoeff@{getCoeff}}
+\index{getCoeff@{getCoeff}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{getCoeff()}{getCoeff()}}
+{\footnotesize\ttfamily void Fir1\+::get\+Coeff (\begin{DoxyParamCaption}\item[{double $\ast$}]{coeff\+\_\+data,  }\item[{unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption}) const}
+
+Copies the current filter coefficients into a provided array. Useful after an adaptive filter has been trained to query the result of its training. 
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+data} & target where coefficients are copied \\
+\hline
+{\em number\+\_\+of\+\_\+taps} & number of doubles to be copied \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::out\+\_\+of\+\_\+range} & number\+\_\+of\+\_\+taps is less the actual number of taps. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classFir1_ad18c498378f7a2affaffddc1b4a238ad}\label{classFir1_ad18c498378f7a2affaffddc1b4a238ad}} 
+\index{Fir1@{Fir1}!getCoeffVector@{getCoeffVector}}
+\index{getCoeffVector@{getCoeffVector}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{getCoeffVector()}{getCoeffVector()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ Fir1\+::get\+Coeff\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the coefficients as a vector \mbox{\Hypertarget{classFir1_ac96ecc1b339b541e0aeab530669bc99c}\label{classFir1_ac96ecc1b339b541e0aeab530669bc99c}} 
+\index{Fir1@{Fir1}!getLearningRate@{getLearningRate}}
+\index{getLearningRate@{getLearningRate}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{getLearningRate()}{getLearningRate()}}
+{\footnotesize\ttfamily double Fir1\+::get\+Learning\+Rate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Getting the learning rate for the adaptive filter. \mbox{\Hypertarget{classFir1_af82d83c241370e34cfdbb61ca82f29fb}\label{classFir1_af82d83c241370e34cfdbb61ca82f29fb}} 
+\index{Fir1@{Fir1}!getTapInputPower@{getTapInputPower}}
+\index{getTapInputPower@{getTapInputPower}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{getTapInputPower()}{getTapInputPower()}}
+{\footnotesize\ttfamily double Fir1\+::get\+Tap\+Input\+Power (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the power of the of the buffer content\+: sum\+\_\+k buffer\mbox{[}k\mbox{]}$^\wedge$2 which is needed to implement a normalised L\+MS algorithm. \mbox{\Hypertarget{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}\label{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}} 
+\index{Fir1@{Fir1}!getTaps@{getTaps}}
+\index{getTaps@{getTaps}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{getTaps()}{getTaps()}}
+{\footnotesize\ttfamily unsigned Fir1\+::get\+Taps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Returns the number of taps. \mbox{\Hypertarget{classFir1_ae7dd501b1f452c51944b7cd3ff0a8ede}\label{classFir1_ae7dd501b1f452c51944b7cd3ff0a8ede}} 
+\index{Fir1@{Fir1}!lms\_update@{lms\_update}}
+\index{lms\_update@{lms\_update}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{lms\_update()}{lms\_update()}}
+{\footnotesize\ttfamily void Fir1\+::lms\+\_\+update (\begin{DoxyParamCaption}\item[{double}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+L\+MS adaptive filter weight update\+: Every filter coefficient is updated with\+: w\+\_\+k(n+1) = w\+\_\+k(n) + learning\+\_\+rate $\ast$ buffer\+\_\+k(n) $\ast$ error(n) 
+\begin{DoxyParams}{Parameters}
+{\em error} & Is the term error(n), the error which adjusts the F\+IR conefficients. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_a3516709a67439e6fa1ecd3aac42fd719}\label{classFir1_a3516709a67439e6fa1ecd3aac42fd719}} 
+\index{Fir1@{Fir1}!reset@{reset}}
+\index{reset@{reset}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void Fir1\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Resets the buffer (but not the coefficients) \mbox{\Hypertarget{classFir1_ae974af5d0263423334fe9ad916a666a2}\label{classFir1_ae974af5d0263423334fe9ad916a666a2}} 
+\index{Fir1@{Fir1}!setLearningRate@{setLearningRate}}
+\index{setLearningRate@{setLearningRate}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{setLearningRate()}{setLearningRate()}}
+{\footnotesize\ttfamily void Fir1\+::set\+Learning\+Rate (\begin{DoxyParamCaption}\item[{double}]{\+\_\+mu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Setting the learning rate for the adaptive filter. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+mu} & The learning rate (i.\+e. rate of the change by the error signal) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_add6c80346d4fec6e9a270df55f604456}\label{classFir1_add6c80346d4fec6e9a270df55f604456}} 
+\index{Fir1@{Fir1}!zeroCoeff@{zeroCoeff}}
+\index{zeroCoeff@{zeroCoeff}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{zeroCoeff()}{zeroCoeff()}}
+{\footnotesize\ttfamily void Fir1\+::zero\+Coeff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets all coefficients to zero 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Fir1.\+h\end{DoxyCompactItemize}
