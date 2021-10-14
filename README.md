@@ -254,12 +254,12 @@ to release the underlying C++ class.
 
 ![alt tag](fir_lms.png)
 
-The least mean square algorithm adjusts the FIR coefficients w_k
-with the help of an error signal
+The least mean square algorithm adjusts the FIR coefficients h_m
+with the help of an error signal e(n):
 ```
-w_k(t+1) = w_k(t) + learning_rate * buffer_k(t) * error(t)
+h_m(n+1) = h_m(n) + learning_rate * h_m(n) * e(n)
 ```
-using the function `lms_update(error)` while performing
+using the function `lms_update(e)` while performing
 the filtering with `filter()`.
 
 ### How to use the filter
@@ -267,8 +267,8 @@ the filtering with `filter()`.
 - Construct the Fir filter with all coefficients set to zero: `Fir1(nCoeff)`
 - Set the learning_rate with the method `setLearningRate(learning_rate)`.
 - Define the signal1 to the FIR filter and use its standard `filter` method to filter it.
-- Define your error which needs to be minimised: `error = signal2 - fir_filter_output`
-- Feed the error back into the filter with the method `lms_update(error)`.
+- Define your error which needs to be minimised: `e = signal2 - fir_filter_output`
+- Feed the error back into the filter with the method `lms_update(e)`.
 
 The `lmsdemo` in the demo directory makes this concept much clearer how to remove
 artefacts with this method.
