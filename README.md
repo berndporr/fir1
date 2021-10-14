@@ -252,6 +252,8 @@ to release the underlying C++ class.
 
 ## LMS algorithm
 
+![alt tag](fir_lms.png)
+
 The least mean square algorithm adjusts the FIR coefficients w_k
 with the help of an error signal
 ```
