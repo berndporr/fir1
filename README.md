@@ -63,7 +63,7 @@ Under windows only the static library is generated which
 should be used for your code development.
 
 ```
-cmake -G "Visual Studio 15 2017 Win64" .
+cmake -G "Visual Studio 16 2019" -A x64 .
 ```
 and then start Visual C++ and compile it. Usually
 you want to compile both the release and debug
