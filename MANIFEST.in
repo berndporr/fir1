@@ -1,5 +1,5 @@
 include *.py
-include README_py
+include README_py.rst
 include numpy.i
 include Fir1.h
 include Fir1.cpp
