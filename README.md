@@ -12,7 +12,7 @@ square (NLMS) algorithm.
 
 ## Installation
 
-### Ubuntu packages for xenial, bionic and focal
+### Packages for Ubuntu LTS
 
 Add this repository to your package manager:
 ```
