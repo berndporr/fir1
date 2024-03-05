@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include <stdexcept>
 
 // give the filter an array of doubles for the coefficients
-Fir1::Fir1(double *_coefficients, unsigned number_of_taps) :
+Fir1::Fir1(const double *_coefficients,const unsigned number_of_taps) :
 	coefficients(new double[number_of_taps]),
 	buffer(new double[number_of_taps]()),
 	taps(number_of_taps) {

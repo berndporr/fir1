@@ -63,7 +63,7 @@ public:
 	 * \param coefficients Coefficients as double array.
          * \param number_of_taps Number of taps (needs to match the number of coefficients
          **/
-	Fir1(double *coefficients, unsigned number_of_taps);
+	Fir1(const double *coefficients,const unsigned number_of_taps);
 
 	/** Coefficients as a text file (for example from Python)
 	 * The number of taps is automatically detected
