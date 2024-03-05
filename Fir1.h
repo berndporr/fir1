@@ -63,7 +63,7 @@ public:
 	 * \param coefficients Coefficients as double array.
          * \param number_of_taps Number of taps (needs to match the number of coefficients
          **/
-	Fir1(double *coefficients, unsigned number_of_taps);
+	Fir1(const double *coefficients,const unsigned number_of_taps);
 
 	/** Coefficients as a text file (for example from Python)
 	 * The number of taps is automatically detected
@@ -168,6 +168,18 @@ public:
 	 * \throws std::out_of_range number_of_taps is less the actual number of taps.
 	 */
 	void getCoeff(double* coeff_data, unsigned number_of_taps) const;
+
+  /**
+   * @brief Externally sets the coefficient array. This is useful when the
+   * actually running filter is at a different place as where the updating
+   * filter is employed.
+   *
+   * @param coeff_data New coefficients to set.
+   * @param number_of_taps Number of taps in the coefficient array. If this is
+   * not equal to the number of taps used in this filter, a runtime error is
+   * thrown.
+   */
+  void setCoeff(const double *coeff_data, const unsigned number_of_taps);
 
 	/**
 	 * Returns the coefficients as a vector

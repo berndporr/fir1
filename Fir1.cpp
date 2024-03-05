@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include <stdexcept>
 
 // give the filter an array of doubles for the coefficients
-Fir1::Fir1(double *_coefficients, unsigned number_of_taps) :
+Fir1::Fir1(const double *_coefficients,const unsigned number_of_taps) :
 	coefficients(new double[number_of_taps]),
 	buffer(new double[number_of_taps]()),
 	taps(number_of_taps) {
@@ -106,5 +106,14 @@ void Fir1::getCoeff(double* coeff_data, unsigned number_of_taps) const {
 	memcpy(coeff_data, coefficients, taps * sizeof(double));
 	if (number_of_taps > taps)
 		memset(&coeff_data[taps], 0, (number_of_taps - taps)*sizeof(double));
+}
+void Fir1::setCoeff(const double* coeff_data, const unsigned number_of_taps) {
+
+	if (number_of_taps != taps) {
+		throw std::runtime_error("Invalid number of taps in new coefficient array");
+	}
+	for (unsigned int i = 0; i < number_of_taps; i++) {
+		coefficients[i] = coeff_data[i];
+	}
 }
 
