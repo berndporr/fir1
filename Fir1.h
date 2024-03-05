@@ -169,6 +169,18 @@ public:
 	 */
 	void getCoeff(double* coeff_data, unsigned number_of_taps) const;
 
+  /**
+   * @brief Externally sets the coefficient array. This is useful when the
+   * actually running filter is at a different place as where the updating
+   * filter is employed.
+   *
+   * @param coeff_data New coefficients to set.
+   * @param number_of_taps Number of taps in the coefficient array. If this is
+   * not equal to the number of taps used in this filter, a runtime error is
+   * thrown.
+   */
+  void setCoeff(const double *coeff_data, const unsigned number_of_taps);
+
 	/**
 	 * Returns the coefficients as a vector
 	 **/

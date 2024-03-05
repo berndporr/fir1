@@ -107,4 +107,13 @@ void Fir1::getCoeff(double* coeff_data, unsigned number_of_taps) const {
 	if (number_of_taps > taps)
 		memset(&coeff_data[taps], 0, (number_of_taps - taps)*sizeof(double));
 }
+void Fir1::setCoeff(const double* coeff_data, const unsigned number_of_taps) {
+
+	if (number_of_taps != taps) {
+		throw std::runtime_error("Invalid number of taps in new coefficient array");
+	}
+	for (unsigned int i = 0; i < number_of_taps; i++) {
+		coefficients[i] = coeff_data[i];
+	}
+}
 
