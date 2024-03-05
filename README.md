@@ -25,24 +25,6 @@ This adds `fir1-dev` and `fir1` to your package list.
 The demo files are in `/usr/share/doc/fir1-dev`. Copy them into a working
 directory, type `gunzip *.gz`, `cmake .` and `make`.
 
-### MacOS packages (homebrew)
-
-Make sure you have the homebrew package manager installed: https://brew.sh/
-
-Add the homebrew tap:
-
-```
-brew tap berndporr/dsp
-```
-
-and then install the fir filter package with:
-
-```
-brew install fir
-```
-
-
-
 ### Linux / Unix / MACOSX: compilation from source
 
 The build system is `cmake`. Install the library with
@@ -77,9 +59,6 @@ it into Android studio and build it either as a release
 or debug binary. This generates an Android aar which you
 import into your project. See the `InstrumentedTest.java`
 for an instructional example.
-
-The pre-compiled libraries are here:
-```Firj/firj/build/outputs/aar/firj-*.aar```
 
 ### Python
 
