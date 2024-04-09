@@ -21,7 +21,7 @@ THE SOFTWARE.
 */
 
 /* (C) 2013 Graeme Hattan & Bernd Porr */
-/* (C) 2018-2021 Bernd Porr */
+/* (C) 2018-2024 Bernd Porr */
 
 #include "Fir1.h"
 
@@ -42,12 +42,14 @@ Fir1::Fir1(const double *_coefficients,const unsigned number_of_taps) :
 }
 
 // init all coefficients and the buffer to zero
-Fir1::Fir1(unsigned number_of_taps) :
+Fir1::Fir1(unsigned number_of_taps, double value) :
 	coefficients(new double[number_of_taps]),
 	buffer(new double[number_of_taps]),  
 	taps(number_of_taps) {
-	zeroCoeff();
-	reset();
+	for(unsigned int i=0;i<number_of_taps;i++) {
+	        coefficients[i] = value;
+		buffer[i] = 0;
+	}
 }
 
 void Fir1::initWithVector(std::vector<double> _coefficients) {

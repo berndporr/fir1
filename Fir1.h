@@ -74,11 +74,11 @@ public:
 	Fir1(const char* coeffFile, unsigned number_of_taps = 0);
 
 	/** 
-         * Inits all coefficients and the buffer to zero
+         * Inits all coefficients and the buffer to a constant value
 	 * This is useful for adaptive filters where we start with
-	 * zero valued coefficients.
+	 * zero valued coefficients or moving average filters.
          **/
-	Fir1(unsigned number_of_taps);
+        Fir1(unsigned number_of_taps, double value = 0);
 
 	/**
          * Releases the coefficients and buffer.
