@@ -40,3 +40,6 @@ add_executable (getcoeffvector getcoeffvector.cpp)
 target_link_libraries(getcoeffvector fir_static)
 add_test(TestGetCoeffsVector getcoeffvector)
 
+add_executable (initavg initavg.cpp)
+target_link_libraries(initavg fir_static)
+add_test(TestInitavgs initavg)
