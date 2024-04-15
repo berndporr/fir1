@@ -14,13 +14,13 @@ Installation
 
 Install the python package with pip::
 
-    pip3 install fir1
+    pip install fir1
 
 You can also install from source::
 
     git clone https://github.com/berndporr/fir1
     cd fir1
-    python3 setup.py install
+    python setup.py install
 
 
 Usage
