@@ -11,11 +11,11 @@
 \item 
 \mbox{\hyperlink{classFir1_a31b98d0df8a4c15f8c85590a5d49ed1d}{Fir1}} (std\+::vector$<$ double $>$ \+\_\+coefficients)
 \item 
-\mbox{\hyperlink{classFir1_a507801740031cd31e91a02346e8fd6ac}{Fir1}} (double $\ast$coefficients, unsigned number\+\_\+of\+\_\+taps)
+\mbox{\hyperlink{classFir1_a8edb996530767bb24a7eb88d4eaaa687}{Fir1}} (const double $\ast$coefficients, const unsigned number\+\_\+of\+\_\+taps)
 \item 
 \mbox{\hyperlink{classFir1_a3391ecc885a06e14baf5d5ea8fb50588}{Fir1}} (const char $\ast$coeff\+File, unsigned number\+\_\+of\+\_\+taps=0)
 \item 
-\mbox{\hyperlink{classFir1_ad2296bf585406c502f2e4271e9b4427c}{Fir1}} (unsigned number\+\_\+of\+\_\+taps)
+\mbox{\hyperlink{classFir1_a79f682f484eb3a9c2c97416abb569294}{Fir1}} (unsigned number\+\_\+of\+\_\+taps, double value=0)
 \item 
 \mbox{\hyperlink{classFir1_a86233a005b6a50a461169ff262825970}{$\sim$\+Fir1}} ()
 \item 
@@ -33,6 +33,8 @@ void \mbox{\hyperlink{classFir1_add6c80346d4fec6e9a270df55f604456}{zero\+Coeff}}
 \item 
 void \mbox{\hyperlink{classFir1_a5b1970b5d534d61802dfe9109fd48522}{get\+Coeff}} (double $\ast$coeff\+\_\+data, unsigned number\+\_\+of\+\_\+taps) const
 \item 
+void \mbox{\hyperlink{classFir1_a6e039c10d4e89e4e39a8d7c8f6ef7a02}{set\+Coeff}} (const double $\ast$coeff\+\_\+data, const unsigned number\+\_\+of\+\_\+taps)
+\begin{DoxyCompactList}\small\item\em Externally sets the coefficient array. This is useful when the actually running filter is at a different place as where the updating filter is employed. \end{DoxyCompactList}\item 
 std\+::vector$<$ double $>$ \mbox{\hyperlink{classFir1_ad18c498378f7a2affaffddc1b4a238ad}{get\+Coeff\+Vector}} () const
 \item 
 unsigned \mbox{\hyperlink{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}{get\+Taps}} ()
@@ -68,11 +70,11 @@ Coefficients as a C++ vector
 {\em \+\_\+coefficients} & is a Vector of doubles. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classFir1_a507801740031cd31e91a02346e8fd6ac}\label{classFir1_a507801740031cd31e91a02346e8fd6ac}} 
+\mbox{\Hypertarget{classFir1_a8edb996530767bb24a7eb88d4eaaa687}\label{classFir1_a8edb996530767bb24a7eb88d4eaaa687}} 
 \index{Fir1@{Fir1}!Fir1@{Fir1}}
 \index{Fir1@{Fir1}!Fir1@{Fir1}}
 \doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
-{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{double $\ast$}]{coefficients,  }\item[{unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{const double $\ast$}]{coefficients,  }\item[{const unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption})}
 
 Coefficients as a (non-\/constant-\/) double array where the length needs to be specified. 
 \begin{DoxyParams}{Parameters}
@@ -94,13 +96,13 @@ Coefficients as a text file (for example from Python) The number of taps is auto
 {\em number\+\_\+of\+\_\+taps} & Number of taps (0 = autodetect) \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classFir1_ad2296bf585406c502f2e4271e9b4427c}\label{classFir1_ad2296bf585406c502f2e4271e9b4427c}} 
+\mbox{\Hypertarget{classFir1_a79f682f484eb3a9c2c97416abb569294}\label{classFir1_a79f682f484eb3a9c2c97416abb569294}} 
 \index{Fir1@{Fir1}!Fir1@{Fir1}}
 \index{Fir1@{Fir1}!Fir1@{Fir1}}
 \doxyparagraph{\texorpdfstring{Fir1()}{Fir1()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
-{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Fir1\+::\+Fir1 (\begin{DoxyParamCaption}\item[{unsigned}]{number\+\_\+of\+\_\+taps,  }\item[{double}]{value = {\ttfamily 0} }\end{DoxyParamCaption})}
 
-Inits all coefficients and the buffer to zero This is useful for adaptive filters where we start with zero valued coefficients. \mbox{\Hypertarget{classFir1_a86233a005b6a50a461169ff262825970}\label{classFir1_a86233a005b6a50a461169ff262825970}} 
+Inits all coefficients and the buffer to a constant value. This is useful for adaptive filters where we start with zero valued coefficients or moving average filters with value = 1.\+0/number\+\_\+of\+\_\+taps. \mbox{\Hypertarget{classFir1_a86233a005b6a50a461169ff262825970}\label{classFir1_a86233a005b6a50a461169ff262825970}} 
 \index{Fir1@{Fir1}!````~Fir1@{$\sim$Fir1}}
 \index{````~Fir1@{$\sim$Fir1}!Fir1@{Fir1}}
 \doxyparagraph{\texorpdfstring{$\sim$Fir1()}{~Fir1()}}
@@ -156,7 +158,7 @@ Getting the learning rate for the adaptive filter. \mbox{\Hypertarget{classFir1_
 \doxyparagraph{\texorpdfstring{getTapInputPower()}{getTapInputPower()}}
 {\footnotesize\ttfamily double Fir1\+::get\+Tap\+Input\+Power (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Returns the power of the of the buffer content\+: sum\+\_\+k buffer\mbox{[}k\mbox{]}$^\wedge$2 which is needed to implement a normalised L\+MS algorithm. \mbox{\Hypertarget{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}\label{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}} 
+Returns the power of the of the buffer content\+: sum\+\_\+k buffer\mbox{[}k\mbox{]}$^\wedge$2 which is needed to implement a normalised LMS algorithm. \mbox{\Hypertarget{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}\label{classFir1_a83f3a1bd1c3c8cc571962c6b561a9e29}} 
 \index{Fir1@{Fir1}!getTaps@{getTaps}}
 \index{getTaps@{getTaps}!Fir1@{Fir1}}
 \doxyparagraph{\texorpdfstring{getTaps()}{getTaps()}}
@@ -168,9 +170,9 @@ Returns the number of taps. \mbox{\Hypertarget{classFir1_ae7dd501b1f452c51944b7c
 \doxyparagraph{\texorpdfstring{lms\_update()}{lms\_update()}}
 {\footnotesize\ttfamily void Fir1\+::lms\+\_\+update (\begin{DoxyParamCaption}\item[{double}]{error }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-L\+MS adaptive filter weight update\+: Every filter coefficient is updated with\+: w\+\_\+k(n+1) = w\+\_\+k(n) + learning\+\_\+rate $\ast$ buffer\+\_\+k(n) $\ast$ error(n) 
+LMS adaptive filter weight update\+: Every filter coefficient is updated with\+: w\+\_\+k(n+1) = w\+\_\+k(n) + learning\+\_\+rate $\ast$ buffer\+\_\+k(n) $\ast$ error(n) 
 \begin{DoxyParams}{Parameters}
-{\em error} & Is the term error(n), the error which adjusts the F\+IR conefficients. \\
+{\em error} & Is the term error(n), the error which adjusts the FIR conefficients. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{classFir1_a3516709a67439e6fa1ecd3aac42fd719}\label{classFir1_a3516709a67439e6fa1ecd3aac42fd719}} 
@@ -179,7 +181,24 @@ L\+MS adaptive filter weight update\+: Every filter coefficient is updated with\
 \doxyparagraph{\texorpdfstring{reset()}{reset()}}
 {\footnotesize\ttfamily void Fir1\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-Resets the buffer (but not the coefficients) \mbox{\Hypertarget{classFir1_ae974af5d0263423334fe9ad916a666a2}\label{classFir1_ae974af5d0263423334fe9ad916a666a2}} 
+Resets the buffer (but not the coefficients) \mbox{\Hypertarget{classFir1_a6e039c10d4e89e4e39a8d7c8f6ef7a02}\label{classFir1_a6e039c10d4e89e4e39a8d7c8f6ef7a02}} 
+\index{Fir1@{Fir1}!setCoeff@{setCoeff}}
+\index{setCoeff@{setCoeff}!Fir1@{Fir1}}
+\doxyparagraph{\texorpdfstring{setCoeff()}{setCoeff()}}
+{\footnotesize\ttfamily void Fir1\+::set\+Coeff (\begin{DoxyParamCaption}\item[{const double $\ast$}]{coeff\+\_\+data,  }\item[{const unsigned}]{number\+\_\+of\+\_\+taps }\end{DoxyParamCaption})}
+
+
+
+Externally sets the coefficient array. This is useful when the actually running filter is at a different place as where the updating filter is employed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coeff\+\_\+data} & New coefficients to set. \\
+\hline
+{\em number\+\_\+of\+\_\+taps} & Number of taps in the coefficient array. If this is not equal to the number of taps used in this filter, a runtime error is thrown. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classFir1_ae974af5d0263423334fe9ad916a666a2}\label{classFir1_ae974af5d0263423334fe9ad916a666a2}} 
 \index{Fir1@{Fir1}!setLearningRate@{setLearningRate}}
 \index{setLearningRate@{setLearningRate}!Fir1@{Fir1}}
 \doxyparagraph{\texorpdfstring{setLearningRate()}{setLearningRate()}}
