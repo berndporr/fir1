@@ -44,6 +44,7 @@ By default optimised release libraries are generated.
 Under windows only the static library is generated which
 should be used for your code development.
 
+For example for Visual Studio 2019 you write:
 ```
 cmake -G "Visual Studio 16 2019" -A x64 .
 ```
@@ -66,7 +67,7 @@ for an instructional example.
 
 Windows / Linux / Mac
 ```
-    pip3 install fir1
+pip install fir1
 ```
 under Windows it might be just `pip` for python3.
 
@@ -75,7 +76,7 @@ under Windows it might be just `pip` for python3.
 
 Windows / Linux / Mac: make sure that you have swig and a C++ compiler installed. Then type:
 ```
-    python3 setup.py install
+python setup.py install
 ```
 
 
@@ -137,7 +138,12 @@ or import the coefficients as a const double array:
 Fir1 fir(coefficients)
 ```
 there is also an option to import a non-const array (for example
-generated with the ifft) and using std::vector.
+generated with the ifft) and using std::vector. You can also
+create a moving average filter by initialising all coefficients
+with a constant value:
+```
+Fir1 moving_average(100,1.0/100);
+```
 
 #### C++ integer FIR filter:
 ```
