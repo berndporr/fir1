@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.8.0)
 
 project(fir VERSION 1.8.0 LANGUAGES CXX)
 
@@ -14,9 +14,6 @@ include(GNUInstallDirs)
 add_subdirectory(demo)
 add_subdirectory(test)
 
-cmake_policy(SET CMP0048 NEW) # set VERSION in project()
-cmake_policy(SET CMP0042 NEW) # enable MACOSX_RPATH by default
-
 enable_testing()
 
 if (MSVC)
@@ -27,11 +24,9 @@ endif()
 
 set(LIBSRC
   Fir1.cpp
-  Fir1fixed.cpp
 )
 
 set(LIBINCLUDE
-  Fir1fixed.h
   Fir1.h
   )
 

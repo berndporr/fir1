@@ -115,8 +115,6 @@ f1 = 45
 f2 = 55
 b = signal.firwin(999,[f1/fs*2,f2/fs*2])
 ```
-For fixed point you need to scale up the coefficients,
-for example by 15 bits: b*32768.
 
 #### octave/MATLAB:
 ```
@@ -124,8 +122,6 @@ octave:1> h=fir1(100,0.1);
 ```
 which creates the coefficients of a lowpass filter with 100 taps
 and normalised cutoff 0.1 to Nyquist.
-
-Again, for fixed point "h" needs to be scaled.
 
 ### Initialisation
 
@@ -145,14 +141,6 @@ with a constant value:
 Fir1 moving_average(100,1.0/100);
 ```
 
-#### C++ integer FIR filter:
-```
-Fir1fixed fir("h_fixed.dat",12);
-```
-where the coefficients have been scaled up by 2^12 and the
-filter will scale them down by this amount (with the help of
-a bitshift operation).
-
 #### JAVA:
 ```
 Fir1 fir = new Fir1(coeff);
@@ -170,11 +158,6 @@ f = fir1.Fir1(coeff)
 #### C++ double:
 ```
 double b = fir.filter(a);
-```
-
-#### C++ integer:
-```
-int b = fir.filter(a);
 ```
 
 #### JAVA:
@@ -291,19 +274,16 @@ The commands under JAVA and Python are identical to C++.
 
 ## Demos
 Demo programs are in the "demo" directory which show how to use the
-filters for both floating point and fixed point.
+filter.
 1. `firdemo` sends an impulse into the filter and you should see the impulse
 response at its output.
-2. `fixeddemo` filters an example ECG with 50Hz noise. The coefficients
-are 12 bit and you can generate them either with OCTAVE/MATLAB or Python.
-The scripts are also provided.
-3. `lmsdemo` filters out 50Hz noise from an ECG with the help of
+2. `lmsdemo` filters out 50Hz noise from an ECG with the help of
 adaptive filtering by using the 50Hz powerline frequency as the input
 to the filter. This can be replaced by any reference artefact signal
 or signal which is correlated with the artefact.
-4. JAVA has an `InstrumentedTest` which filters both a delta pulse and
+3. JAVA has an `InstrumentedTest` which filters both a delta pulse and
 a step function.
-5. filter_ecg.py performs the filtering of an ECG in python using
+4. filter_ecg.py performs the filtering of an ECG in python using
 the fir1 python module which in turn calls internally the C++ functions.
 
 ## C++ documentation
