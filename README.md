@@ -3,9 +3,9 @@
 ![alt tag](fir.png)
 
 An efficient finite impulse response (FIR) filter class
-in C++, JAVA wrapper for Android and Python wrapper.
+in C++ and Python wrapper.
 
-The floating point class offers also adaptive filtering
+The FIR filter class offers also adaptive filtering
 using the least mean square (LMS) or normalised least mean
 square (NLMS) algorithm.
 
@@ -52,14 +52,6 @@ and then start Visual C++ and compile it. Usually
 you want to compile both the release and debug
 libraries because they are not compatible to each
 other under Windows.
-
-### Android / JAVA
-
-The subdirectory `firj` contains an Android project. Load
-it into Android studio and build it either as a release
-or debug binary. This generates an Android aar which you
-import into your project. See the `InstrumentedTest.java`
-for an instructional example.
 
 ### Python
 
@@ -141,13 +133,6 @@ with a constant value:
 Fir1 moving_average(100,1.0/100);
 ```
 
-#### JAVA:
-```
-Fir1 fir = new Fir1(coeff);
-```
-where `coeff` is an array of double precision coefficients
-and returns the fir filter class.
-
 #### Python
 ```
 f = fir1.Fir1(coeff)
@@ -160,18 +145,13 @@ f = fir1.Fir1(coeff)
 double b = fir.filter(a);
 ```
 
-#### JAVA:
-```
-double b = fir.filter(a)
-```
-
 #### Python
 ```
 b = f.filter(a)
 ```
 ### Utility methods
 
-These functions are the same in C++, JAVA and Python:
+These functions are the same in C++ and Python:
 
 + `getTaps()` returns the length of the FIR filter kernel.
 + `reset()` sets all delay lines to zero.
@@ -198,26 +178,6 @@ and exception-throwing behaviour of the C++. The returned array will have `n` el
 which is a copy of the filter kernel. This is probably the default use case in Python.
 
 
-#### JAVA
-+ `double[] getCoeff()` returns a double array of the filter kernel.
-+ `double[] getCoeff(n : int)` as per the C++ method, following the zero-padding
-and exception-throwing behaviour of the C++. The returned array will have `n` elements.
-
-
-### Destructor
-
-#### C++
-```
-delete fir;
-```
-
-#### JAVA
-```
-fir.release();
-```
-to release the underlying C++ class.
-
-
 ## LMS algorithm
 
 ![alt tag](fir_lms.png)
@@ -230,7 +190,7 @@ h_m(n+1) = h_m(n) + learning_rate * h_m(n) * e(n)
 using the function `lms_update(e)` while performing
 the filtering with `filter()`.
 
-### How to use the filter
+### How to use the LMS filter
 
 - Construct the Fir filter with all coefficients set to zero: `Fir1(nCoeff)`
 - Set the learning_rate with the method `setLearningRate(learning_rate)`.
@@ -267,7 +227,7 @@ See the demo below which removes 50Hz from an ECG which uses a normalised 50Hz s
 which guarantees stability by design.
 
 
-### JAVA/Python
+### Python
 
 The commands under JAVA and Python are identical to C++.
 
@@ -281,9 +241,7 @@ response at its output.
 adaptive filtering by using the 50Hz powerline frequency as the input
 to the filter. This can be replaced by any reference artefact signal
 or signal which is correlated with the artefact.
-3. JAVA has an `InstrumentedTest` which filters both a delta pulse and
-a step function.
-4. filter_ecg.py performs the filtering of an ECG in python using
+3. filter_ecg.py performs the filtering of an ECG in python using
 the fir1 python module which in turn calls internally the C++ functions.
 
 ## C++ documentation
@@ -295,9 +253,6 @@ The doxygen generated documentation can be found here:
 
 ## Unit tests
 Under C++ just run `make test` or `ctest`.
-
-The JAVA wrapper contains an instrumented test which you can run on
-your Android device.
 
 
 ## Credits

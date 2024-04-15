@@ -42,7 +42,7 @@ def getCoeff(self, *args):
                 return $action(self, *args)
 %}
 
-%apply (double* IN_ARRAY1, int DIM1) {(double *coefficients, unsigned number_of_taps)};
+%apply (double* IN_ARRAY1, int DIM1) {(const double *coefficients, const unsigned number_of_taps)};
 %apply (double* ARGOUT_ARRAY1, int DIM1) {(double *coeff_data, unsigned number_of_taps)};
 
 %include "Fir1.h"
