@@ -1,3 +1,9 @@
-firdemo: sends an impulse response through the filter (floating point)
-lmsdemo: removes 50Hz with the help of adaptive filter using LMS
-filter_ecg.py: Pure python program which loads the fir1 module to filter 50Hz
+DEMO Code
+
+create_bandstop_coeff.py: calculates the bandstop coefficients for firdemo.
+
+firdemo: removes 50Hz noise from ecg50hz.dat and saves it to ecg_filtered.dat.
+
+lmsdemo: removes 50Hz from ecg50hz.dat with an adptive LMS filter and saves it to ecg_filtered.dat.
+
+filter_ecg.py: Pure python program which loads the fir1 module to filter out 50Hz.

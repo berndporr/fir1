@@ -17,16 +17,19 @@ int main (int,char**)
 	// gets the number of taps
 	int taps = fir.getTaps();
 
-	printf("taps = %d\n",taps);
+	printf("Number of taps = %d\n",taps);
 
-	FILE *fimpulse = fopen("impulse.dat","wt");
-	for(int i=0;i<taps*2;i++) 
+	FILE* fin = fopen("ecg50hz.dat","rt");
+	FILE* fout = fopen("ecg_filtered.dat","wt");
+	for(;;) 
 	{
-		float a=0;
-		if (i==10) a = 1;
-		double b = fir.filter(a);
-		fprintf(fimpulse,"%lf\n",b);
+	    float a;
+	    if (fscanf(fin,"%f\n",&a) < 1) break;
+	    a = (a - 2048.0) / 2048.0;
+	    const float b = fir.filter(a);
+	    fprintf(fout,"%f\n",b);
 	}
-	fclose(fimpulse);
-	fprintf(stderr,"Written the impulse response to 'impulse.dat'\n");
+	fclose(fin);
+	fclose(fout);
+	fprintf(stderr,"Written filtered ECG to ecg_filtered.dat.\n");
 }
